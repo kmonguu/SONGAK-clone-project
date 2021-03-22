@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+    <sqlMap namespace="Sms4Stat">
+        
+        
+         <select id="list">
+                SELECT
+                <isEqual property="is_count" compareValue="Y">
+                    count(*) as cnt
+                </isEqual>
+                <isNotEqual property="is_count" compareValue="Y">
+                    a.mb_id
+                    , a.hs_name
+                    , a.hs_memo
+                    , a.hs_code
+                    , a.hs_hp
+                    , b.*
+                </isNotEqual>
+                FROM
+                      sms4_history a
+                      INNER JOIN sms4_write b ON a.wr_no = b.wr_no
+                WHERE
+                        1=1
+                         <isNotEmpty property="sfl">
+                             <isNotEmpty property="stx"  prepend="AND">
+                                    $sfl$ like '%$stx$%'
+                             </isNotEmpty>
+                          </isNotEmpty>
+                          $where_query$
+                <isNotEqual property="is_count" compareValue="Y">
+                <isNotEmpty property="sst">
+                    ORDER BY
+                        <isEqual property="sod" compareValue="asc">
+                            if($sst$='' OR $sst$ is null, '힣힣힣힣힣힣', $sst$) $sod$ 
+                        </isEqual>  
+                        <isEqual property="sod" compareValue="desc">
+                            $sst$ $sod$ 
+                        </isEqual>  
+                        $order_query$
+                </isNotEmpty>
+                Limit
+                    $from_record$, $rows$
+                </isNotEqual>
+        </select>
+        
+        
+
+
+        <select id="stat_date">
+            SELECT
+                count(*) tot
+                , sum(if(wr_failure = 1, 0, 1)) succ
+                , sum(if(wr_failure = 1, 1, 0)) fail
+            FROM
+                sms4_write 
+            <isNotEmpty property="sch_sdate">
+            WHERE
+                wr_datetime BETWEEN concat(#sch_sdate#, ' 00:00:00') AND concat(#sch_edate#, ' 23:59:59')
+            </isNotEmpty>
+        </select>
+                  
+
+    </sqlMap>

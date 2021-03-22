@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+    <sqlMap namespace="APIStoreKKOConfig">
+        
+        
+         <select id="list">
+	            SELECT
+	            <isEqual property="is_count" compareValue="Y">
+	                count(*) as cnt
+	            </isEqual>
+	            <isNotEqual property="is_count" compareValue="Y">
+	                *
+	            </isNotEqual>
+	            FROM
+	                  api_kko_config
+	            WHERE
+	                     com_id = #com_id#
+	                     <isNotEmpty property="sfl">
+	                         <isNotEmpty property="stx"  prepend="AND">
+	                                $sfl$ like '%$stx$%'
+	                         </isNotEmpty>
+	                      </isNotEmpty>
+	                      $where_query$
+	            <isNotEqual property="is_count" compareValue="Y">
+	            <isNotEmpty property="sst">
+	            ORDER BY
+	                <isEqual property="sod" compareValue="asc">
+	                    if($sst$='' OR $sst$ is null, '힣힣힣힣힣힣', $sst$) $sod$ 
+	                </isEqual>  
+	                <isEqual property="sod" compareValue="desc">
+	                    $sst$ $sod$ 
+	                </isEqual>  
+	                $order_query$
+	            </isNotEmpty>
+	            Limit
+	                $from_record$, $rows$
+	            </isNotEqual>
+        </select>
+        
+        
+        <select id="get">
+            SELECT
+                *
+            FROM
+                api_kko_config
+            WHERE
+                com_id = #com_id#
+        </select> 
+        
+        
+        <insert id="insert">
+            INSERT INTO
+                api_kko_config
+            SET
+                com_id = #com_id#
+                , sender_number = #sender_number#
+                , sender_name = #sender_name#
+                , api_id = #api_id#
+                , api_key = #api_key#
+                , use_failback = #use_failback#
+        </insert>
+        
+        <update id="update">
+                UPDATE api_kko_config 
+                SET
+                    sender_number = #sender_number#
+                    , sender_name = #sender_name#
+                    , api_id = #api_id#
+                    , api_key = #api_key#
+                    , use_failback = #use_failback#
+                 WHERE
+                    com_id = #com_id#
+        </update>
+        
+        
+         <delete id="delete">
+                DELETE FROM api_kko_config WHERE com_id = #com_id#
+         </delete>  
+               
+
+
+    </sqlMap>

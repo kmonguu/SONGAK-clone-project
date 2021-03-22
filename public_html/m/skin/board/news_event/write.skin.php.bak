@@ -1,0 +1,471 @@
+<?
+if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
+
+if ($is_dhtml_editor) {
+    include_once("$g4[path]/lib/cheditor4.lib.php");
+    echo "<script src='$g4[cheditor4_path]/cheditor.js'></script>";
+    echo cheditor1('wr_content', '90%', '250px');
+}
+?>
+
+
+<link rel="stylesheet" href="<?=$board_skin_mpath?>/skin.css" type="text/css"/>
+
+<script type="text/javascript">
+// 글자수 제한
+var char_min = parseInt(<?=$write_min?>); // 최소
+var char_max = parseInt(<?=$write_max?>); // 최대
+</script>
+
+<form name="fwrite" method="post" enctype="multipart/form-data" style="margin:0px;">
+<input type=hidden name=null>
+<input type=hidden name=w        value="<?=$w?>">
+<input type=hidden name=bo_table value="<?=$bo_table?>">
+<input type=hidden name=wr_id    value="<?=$wr_id?>">
+<input type=hidden name=sca      value="<?=$sca?>">
+<input type=hidden name=sfl      value="<?=$sfl?>">
+<input type=hidden name=stx      value="<?=$stx?>">
+<input type=hidden name=spt      value="<?=$spt?>">
+<input type=hidden name=sst      value="<?=$sst?>">
+<input type=hidden name=sod      value="<?=$sod?>">
+<input type=hidden name=page     value="<?=$page?>">
+
+<input type=hidden name="ca_name" value="Event" />
+
+<div class="Boardbox">
+	<div class="Writetbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$title_msg?> </div>	
+	<div class="Boradwright">
+		<table cellspacing="0" cellpadding="0" class="b2" summary="글쓰기 입니다.">
+			<colgroup>
+				<col width="130" />
+				<col />
+				<col />
+			</colgroup>
+			<tbody>
+				
+				<? if ($is_category) { ?>
+				<tr>
+					<td class="td-left"><strong>분 류</strong></td>
+					<td>
+						<select id="ca_name" name=ca_name required itemname="분류" onchange="cat_change(this.value)"><?=$category_option?></select>
+						<script type="text/javascript">
+							$("#ca_name > option[value='<?=$write[ca_name]?>']").attr("selected", "selected");
+							<?if(!$write[ca_name]){?>
+							$("#ca_name > option[value='<?=$sca?>']").attr("selected", "selected");
+							<?}?>
+						</script>
+					</td>
+				</tr>
+				<? } ?>
+				<tr>
+					<td class="td-left"><strong>제 목</strong></td>
+					<td class="td-left2">
+						<input class="input06" name=wr_subject id="wr_subject" itle="제목을 입력해주세요" required value="<?=$subject?>"></td>
+					</td>
+				</tr>
+
+				<tr>
+					<td class="td-left"><strong>설 명</strong></td>
+					<td class="td-left2">
+						<input class="input06" name=wr_1 id="wr_1" itle="설명을 입력해주세요" required value="<?=$write[wr_1]?>"></td>
+					</td>
+				</tr>
+
+				<tr class="event_period"> 
+					<td class="td-left"><strong>기 간</strong></td>
+					<td class="td-left2">
+
+						<div style="float:left;padding:0 7px 0 0px;position:relative">
+							<input id="wr_2" name="wr_2" type="text" class="input07" title="검색기간 시작을 입력해주세요"  value="<?=$write[wr_2]?>" style='cursor:pointer' readonly />
+							<div id="wr_2_div" class='calendar' style='display:none;padding:25px;position:absolute;top:29px;left:0px;width:515px;;border:1px solid #cfcfcf;background:white;z-index:99'>		
+							</div>
+						</div>
+
+						<div style="float:left;color:#cfcfcf;font-size:30px;font-weight:bold;line-height:32px;">-</div>
+
+						<div style="float:left;padding:0 7px 0 10px;position:relative">
+							<input id="wr_3" name="wr_3" type="text" class="input07" title="검색기간 끝을 입력해주세요" value="<?=$write[wr_3]?>"  style='cursor:pointer' readonly />
+							<div id="wr_3_div" class='calendar' style='display:none;padding:25px;position:absolute;top:29px;left:10px;width:515px;;border:1px solid #cfcfcf;background:white;z-index:99'>		
+							</div>
+						</div>
+					</td>
+				</tr>
+
+
+				<!--<tr class="event_period"> 
+					<td class="td-left"><strong>가 격</strong></td>
+					<td class="td-left2">
+
+						<div style="float:left;padding:0 7px 0 0px;position:relative">
+							<input id="wr_4" name="wr_4" type="text" class="input03" value="<?=$write[wr_4]?>"  />
+						</div>
+
+						<div style="float:left;color:#cfcfcf;font-size:18px;font-weight:bold;line-height:32px;">~</div>
+
+						<div style="float:left;padding:0 7px 0 10px;position:relative">
+							<input id="wr_5" name="wr_5" type="text" class="input03" value="<?=$write[wr_5]?>"   />
+						</div>
+					</td>
+				</tr>-->
+
+				
+
+				<tr>
+					<td class="td-left"><strong>상세내용</strong></td>
+					<td class="td-left2">
+						<? if ($is_dhtml_editor) { ?>
+							 <?=cheditor2('wr_content', $content);?>
+						<? } else { ?>
+							<textarea id="wr_content" name="wr_content" class='textcon02' style='word-break:break-all;' required
+							<? if ($write_min || $write_max) { ?>onkeyup="check_byte('wr_content', 'char_count');"<?}?>><?=$content?></textarea>
+							<? if ($write_min || $write_max) { ?><script type="text/javascript"> check_byte('wr_content', 'char_count'); </script><?}?>
+						<?}?>
+					</td>
+				</tr>
+				
+				<?if($board[bo_upload_count] > 0){?>
+				<tr>
+					<td class="td-left"><strong>파일첨부</strong></td>
+
+					<!--
+					<td class="td-left2">
+						<input type="file" class="input01" title="파일첨부입니다" />
+							<span class="file">
+								<a href="#"><img src="/res/images/file_plus.jpg" /></a>&nbsp;
+								<a href="#"><img src="/res/images/file_minus.jpg" /></a>
+							</span>
+					</td>
+					-->
+		
+					<td class="td-left2">
+						<table id="variableFiles" cellpadding=0 cellspacing=0 style="float:left;">
+						</table>
+						
+						<span class="file">
+							<a href="javascript:add_file()"><img src="<?=$board_skin_mpath?>/img/file_plus.jpg" /></a>&nbsp;
+							<a href="javascript:del_file()"><img src="<?=$board_skin_mpath?>/img/file_minus.jpg" /></a>
+						</span>
+					
+						<script type="text/javascript">
+						var flen = 0;
+						function add_file(delete_code)
+						{
+						    var upload_count = <?=(int)$board[bo_upload_count]?>;
+						    if (upload_count && flen >= upload_count)
+						    {
+							alert("이 게시판은 "+upload_count+"개 까지만 파일 업로드가 가능합니다.");
+							return;
+						    }
+
+						    var objTbl;
+						    var objRow;
+						    var objCell;
+						    if (document.getElementById)
+							objTbl = document.getElementById("variableFiles");
+						    else
+							objTbl = document.all["variableFiles"];
+
+						    objRow = objTbl.insertRow(objTbl.rows.length);
+						    objCell = objRow.insertCell(0);
+							
+						    objCell.style.border = "0px";
+						    objCell.style.padding = "5px 0 0 0";
+						    objCell.style.textAlign = 'left';
+
+						    objCell.innerHTML = "<input type='file' class='input01' name='bf_file[]' title='파일첨부입니다'>";
+						    if (delete_code)
+							objCell.innerHTML += delete_code;
+						    else
+						    {
+							<? if ($is_file_content) { ?>
+							objCell.innerHTML += "<br><input type='text' class='input01' size=50 name='bf_content[]' title='파일첨부입니다>";
+							<? } ?>
+							;
+						    }
+
+						    flen++;
+						}
+
+						<?=$file_script; //수정시에 필요한 스크립트?>
+
+						function del_file()
+						{
+						    // file_length 이하로는 필드가 삭제되지 않아야 합니다.
+						    var file_length = <?=(int)$file_length?>;
+						    var objTbl = document.getElementById("variableFiles");
+						    if (objTbl.rows.length - 1 > file_length)
+						    {
+							objTbl.deleteRow(objTbl.rows.length - 1);
+							flen--;
+						    }
+						}
+						</script>
+					</td>
+
+				</tr>
+				<?}?>
+
+			</tbody>
+		</table>
+	</div>
+	<div class="Boardbtn">
+		<div class="Boardrightbtn">
+			<div class="totalbtn" style="padding:0 5px 0 0;"><a href="./board.php?bo_table=<?=$bo_table?>&sca=<?=$sca?>"><span class="totalbtn1">목록보기</span></a></div>
+			<div class="totalbtn"><a href="javascript:fwrite_submit(document.fwrite)"><span class="totalbtn1">글쓰기</span></a></div>
+		</div>
+	</div>
+</div>
+
+</form>
+
+
+
+<script type="text/javascript">
+
+	$("#ca_name").it9_select({width:95, min_opt_height:250});
+
+	function cat_change(val){
+		if(val == "Event"){
+			$(".event_period").fadeIn('fast');
+		} else {
+			$(".event_period").hide();
+		}
+	}
+
+	var isCalOver = false;
+	$(function(){
+		
+		if($("#ca_name").val() == "News") $(".event_period").hide();
+
+		$("#wr_2").click(function(){
+			$("#wr_2_div").show();
+			$("#wr_3_div").hide();
+
+			//시작 날자
+			dual_calendar({
+				id:"wr_2_div",
+				sdate_id:"wr_2",
+				mode:"single",
+				date_sep:"-",
+				caption:false,
+				limit:false,
+				single_callback: function(date){
+					if($("#wr_3").val() != "" && $("#wr_3").val() < date){
+						$("#wr_3").val("");
+						$("#wr_2_div").fadeOut('fast');
+					} else {
+						$("#wr_2_div").fadeOut('fast');						
+					}
+				}
+			});
+		});
+
+		$("#wr_3").click(function(){
+			$("#wr_3_div").show();
+			$("#wr_2_div").hide();
+			//끝 날자
+			dual_calendar({
+				id:"wr_3_div",
+				sdate_id:"wr_3",
+				mode:"single",
+				date_sep:"-",
+				caption:false,
+				limit:false,
+				single_callback: function(date){
+					if($("#wr_2").val() > date){
+						alert("시작 검색일 보다 이전일을 검색하실 수 없습니다.");	
+						$("#wr_3").val($("#wr_2").val());
+					} else {
+						$("#wr_3_div").fadeOut('fast');
+					}
+				}
+			});
+		});
+
+		
+		$("#wr_2_div, #wr_3_div").mouseover(function(){isCalOver=true}).mouseleave(function(){isCalOver=false;});
+		$(document).mouseup(function(){
+			if(!isCalOver)
+				$(".calendar").hide();
+		});
+
+	
+	});
+</script>
+
+
+
+
+<script type="text/javascript" src="<?="$g4[path]/js/jquery.kcaptcha.js"?>"></script>
+<script type="text/javascript">
+
+jQuery(function($){
+	$.datepicker.regional['ko'] = {
+		closeText: '닫기',
+		prevText: '이전달',
+		nextText: '다음달',
+		currentText: '오늘',
+		monthNames: ['1월(JAN)','2월(FEB)','3월(MAR)','4월(APR)','5월(MAY)','6월(JUN)',
+		'7월(JUL)','8월(AUG)','9월(SEP)','10월(OCT)','11월(NOV)','12월(DEC)'],
+		monthNamesShort: ['1월','2월','3월','4월','5월','6월',
+		'7월','8월','9월','10월','11월','12월'],
+		dayNames: ['일','월','화','수','목','금','토'],
+		dayNamesShort: ['일','월','화','수','목','금','토'],
+		dayNamesMin: ['일','월','화','수','목','금','토'],
+		weekHeader: 'Wk',
+		dateFormat: 'yy-mm-dd',
+		firstDay: 0,
+		isRTL: false,
+		showMonthAfterYear: true,
+		yearSuffix: ''};
+	$.datepicker.setDefaults($.datepicker.regional['ko']);
+
+	$("#wr_2").datepicker({
+		showOn: "both",
+		buttonImage: "/img/calendar.gif",
+		buttonImageOnly: true,
+		changeMonth: true,
+		changeYear: true,
+		showButtonPanel: false
+	});
+
+	$("#wr_3").datepicker({
+		showOn: "both",
+		buttonImage: "/img/calendar.gif",
+		buttonImageOnly: true,
+		changeMonth: true,
+		changeYear: true,
+		showButtonPanel: false
+	});
+
+	$(".ui-datepicker-trigger").attr("align","absmiddle");
+	$(".ui-datepicker-trigger").css("width","23px");
+	$(".ui-datepicker-trigger").css("height","21px");
+});
+<?
+// 관리자라면 분류 선택에 '공지' 옵션을 추가함
+if ($is_admin)
+{
+    echo "
+    if (typeof(document.fwrite.ca_name) != 'undefined')
+    {
+        document.fwrite.ca_name.options.length += 1;
+        document.fwrite.ca_name.options[document.fwrite.ca_name.options.length-1].value = '공지';
+        document.fwrite.ca_name.options[document.fwrite.ca_name.options.length-1].text = '공지';
+    }";
+}
+?>
+
+with (document.fwrite)
+{
+    if (typeof(wr_name) != "undefined")
+        wr_name.focus();
+    else if (typeof(wr_subject) != "undefined")
+        wr_subject.focus();
+    else if (typeof(wr_content) != "undefined")
+        wr_content.focus();
+
+    if (typeof(ca_name) != "undefined")
+        if (w.value == "u")
+            ca_name.value = "<?=$write[ca_name]?>";
+}
+
+function html_auto_br(obj)
+{
+    if (obj.checked) {
+        result = confirm("자동 줄바꿈을 하시겠습니까?\n\n자동 줄바꿈은 게시물 내용중 줄바뀐 곳을<br>태그로 변환하는 기능입니다.");
+        if (result)
+            obj.value = "html2";
+        else
+            obj.value = "html1";
+    }
+    else
+        obj.value = "";
+}
+
+function fwrite_submit(f)
+{
+    if($("#ca_name").val() == ""){
+	alert("분류를 선택해 주세요");
+	return false;
+    }
+
+    if (document.getElementById('char_count')) {
+        if (char_min > 0 || char_max > 0) {
+            var cnt = parseInt(document.getElementById('char_count').innerHTML);
+            if (char_min > 0 && char_min > cnt) {
+                alert("내용은 "+char_min+"글자 이상 쓰셔야 합니다.");
+                return false;
+            }
+            else if (char_max > 0 && char_max < cnt) {
+                alert("내용은 "+char_max+"글자 이하로 쓰셔야 합니다.");
+                return false;
+            }
+        }
+    }
+
+    if (document.getElementById('tx_wr_content')) {
+        if (!ed_wr_content.outputBodyText()) {
+            //alert('본문을 입력하십시오.');
+            //ed_wr_content.returnFalse();
+            //return false;
+        }
+    }
+
+    <?
+    if ($is_dhtml_editor) echo cheditor3('wr_content');
+    ?>
+
+    var subject = "";
+    var content = "";
+    $.ajax({
+        url: "<?=$board_skin_path?>/ajax.filter.php",
+        type: "POST",
+        data: {
+            "subject": f.wr_subject.value,
+            "content": f.wr_content.value
+        },
+        dataType: "json",
+        async: false,
+        cache: false,
+        success: function(data, textStatus) {
+            subject = data.subject;
+            content = data.content;
+        }
+    });
+
+    if (subject) {
+        alert("제목에 금지단어('"+subject+"')가 포함되어있습니다");
+        f.wr_subject.focus();
+        return;
+    }
+
+    if (content) {
+        alert("내용에 금지단어('"+content+"')가 포함되어있습니다");
+        if (typeof(ed_wr_content) != "undefined")
+            ed_wr_content.returnFalse();
+        else
+            f.wr_content.focus();
+        return;
+    }
+	
+    <?
+    if ($g4[https_url])
+        echo "f.action = '$g4[https_url]/$g4[bbs]/write_update.php';";
+    else
+        echo "f.action = './write_update.php';";
+    ?>
+
+    $(f).submit();
+}
+
+$(function(){
+	$(".cheditor-editarea").contents().find("body").css("font-size", "21px");
+	$(".cheditor-tb-wrapper").hide();
+	$(".cheditor-viewmode").hide();
+});
+
+</script>
+
+<script type="text/javascript" src="<?="$g4[path]/js/board.js"?>"></script>
+<script type="text/javascript"> window.onload=function() { drawFont(); } </script>

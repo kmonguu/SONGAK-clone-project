@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+
+	<t value='회원관리' kor='회원관리' eng='' jpn='' chn='会员管理' />
+	<t value='관리자' kor='관리자' eng='' jpn='' chn='管理者' />
+	<t value='로그아웃' kor='로그아웃' eng='' jpn='' chn='退出' />
+	<t value='일반회원관리' kor='일반회원관리' eng='' jpn='' chn='一般会员管理' />
+	<t value='의사회원관리' kor='의사회원관리' eng='' jpn='' chn='医生会员管理' />
+	<t value='회원아이디' kor='회원아이디' eng='' jpn='' chn='会员ID' />
+	<t value='이름' kor='이름' eng='' jpn='' chn='姓名' />
+	<t value='E-MAIL' kor='E-MAIL' eng='' jpn='' chn='邮件' />
+	<t value='전화번호' kor='전화번호' eng='' jpn='' chn='电话号码' />
+	<t value='핸드폰번호' kor='핸드폰번호' eng='' jpn='' chn='手机号码' />
+	<t value='총회원수' kor='총회원수' eng='' jpn='' chn='总会员数' />
+	<t value='차단' kor='차단' eng='' jpn='' chn='屏蔽' />
+	<t value='탈퇴' kor='탈퇴' eng='' jpn='' chn='退出' />
+	<t value='추가등록' kor='추가등록' eng='' jpn='' chn='追加登陆' />
+	<t value='회원아이디' kor='회원아이디' eng='' jpn='' chn='会员ID' />
+	<t value='이름' kor='이름' eng='' jpn='' chn='姓名' />
+	<t value='별명' kor='별명' eng='' jpn='' chn='昵名' />
+	<t value='권한' kor='권한' eng='' jpn='' chn='权限' />
+	<t value='최종접속' kor='최종접속' eng='' jpn='' chn='最终连接' />
+	<t value='상태' kor='상태' eng='' jpn='' chn='状态' />
+	<t value='상세보기' kor='상세보기' eng='' jpn='' chn='查看状态' />
+	<t value='선택수정' kor='선택수정' eng='' jpn='' chn='选择修改' />
+	<t value='선택삭제' kor='선택삭제' eng='' jpn='' chn='选择删除' />
+	<t value='회원정보 수정' kor='회원정보 수정' eng='' jpn='' chn='修改会员信息' />
+	<t value='아이디' kor='아이디' eng='' jpn='' chn='账号' />
+	<t value='이름(실명)' kor='이름(실명)' eng='' jpn='' chn='姓名（实名）' />
+	<t value='회원 권한' kor='회원 권한' eng='' jpn='' chn='会员权限' />
+	<t value='전화번호' kor='전화번호' eng='' jpn='' chn='电话号码' />
+	<t value='패스워드' kor='패스워드' eng='' jpn='' chn='密码' />
+	<t value='별명' kor='별명' eng='' jpn='' chn='昵称' />
+	<t value='핸드폰번호' kor='핸드폰번호' eng='' jpn='' chn='手机号码' />
+	<t value='메모' kor='메모' eng='' jpn='' chn='备注' />
+	<t value='진료기록 사진' kor='진료기록 사진' eng='' jpn='' chn='就诊记录图片' />
+	<t value='진료기록 사진 보기' kor='진료기록 사진 보기' eng='' jpn='' chn='查看就诊记录图片' />
+	<t value='예약내역' kor='예약내역' eng='' jpn='' chn='预约明细' />
+	<t value='예약내역 보기' kor='예약내역 보기' eng='' jpn='' chn='查看预约明细' />
+	<t value='회원가입일' kor='회원가입일' eng='' jpn='' chn='加入会员日期' />
+	<t value='탈퇴일자' kor='탈퇴일자' eng='' jpn='' chn='退出会员日期' />
+	<t value='관리자 패스워드' kor='관리자 패스워드' eng='' jpn='' chn='管理者密码' />
+	<t value='' kor='' eng='' jpn='' chn='' />
+	<t value='최근접속일' kor='최근접속일' eng='' jpn='' chn='最近连接日期' />
+	<t value='' kor='' eng='' jpn='' chn='' />
+	<t value='여분필드' kor='여분필드' eng='' jpn='' chn='多余字段' />
+	<t value='접근차단일자' kor='접근차단일자' eng='' jpn='' chn='最近切断日期' />
+	<t value='오늘' kor='오늘' eng='' jpn='' chn='今天' />
+	<t value='확인' kor='확인' eng='' jpn='' chn='确认' />
+	<t value='목록' kor='목록' eng='' jpn='' chn='目录' />
+	<t value='삭제' kor='삭제' eng='' jpn='' chn='删除' />
+	<t value='삭제하기' kor='삭제하기' eng='' jpn='' chn='删除' />
+
+	<t value='게시판관리' kor='게시판관리' eng='' jpn='' chn='公告栏管理' />
+	<t value='TABLE' kor='TABLE' eng='' jpn='' chn='桌面' />
+	<t value='제목' kor='제목' eng='' jpn='' chn='标题' />
+	<t value='게시판수' kor='게시판수' eng='' jpn='' chn='公告栏数' />
+	<t value='TABLE' kor='TABLE' eng='' jpn='' chn='桌面' />
+	<t value='제목 그룹 스킨' kor='제목 그룹 스킨' eng='' jpn='' chn='组标识皮肤' />
+	<t value='읽기 포인트' kor='읽기 포인트' eng='' jpn='' chn='阅读要点' />
+	<t value='쓰기 포인트' kor='쓰기 포인트' eng='' jpn='' chn='写作要点' />
+	<t value='코멘트 포인트' kor='코멘트 포인트' eng='' jpn='' chn='评论要点' />
+	<t value='다운 포인트' kor='다운 포인트' eng='' jpn='' chn='下载要点' />
+	<t value='검색 사용' kor='검색 사용' eng='' jpn='' chn='搜索使用' />
+	<t value='검색 순서' kor='검색 순서' eng='' jpn='' chn='搜索顺序' />
+	<t value='자료가 없습니다' kor='자료가 없습니다' eng='' jpn='' chn='没有资料' />
+	<t value='선택수정' kor='선택수정' eng='' jpn='' chn='选择修订' />
+	<t value='게시판그룹관리' kor='게시판그룹관리' eng='' jpn='' chn='公告栏组队管理' />
+	<t value='제목' kor='제목' eng='' jpn='' chn='标题' />
+	<t value='ID' kor='ID' eng='' jpn='' chn='账号' />
+	<t value='그룹 관리자' kor='그룹 관리자' eng='' jpn='' chn='组队管理者' />
+	<t value='그룹수' kor='그룹수' eng='' jpn='' chn='公告栏数' />
+	<t value='제목 ' kor='제목 ' eng='' jpn='' chn='标题' />
+	<t value='게시판' kor='게시판' eng='' jpn='' chn='公告栏' />
+	<t value='자료가 없습니다' kor='자료가 없습니다' eng='' jpn='' chn='没有资料' />
+	<t value='선택수정' kor='선택수정' eng='' jpn='' chn='选择修订' />
+	<t value='환자화면 메인이미지' kor='환자화면 메인이미지' eng='' jpn='' chn='用户主页图片' />
+	<t value='이미지 관리' kor='이미지 관리' eng='' jpn='' chn='图片管理' />
+	<t value='이미지관리' kor='이미지관리' eng='' jpn='' chn='图片管理' />
+	<t value='파일첨부' kor='파일첨부' eng='' jpn='' chn='添加附件' />
+	<t value='이미지' kor='이미지' eng='' jpn='' chn='图片' />
+	<t value='저장' kor='저장' eng='' jpn='' chn='保存' />
+	<t value='코드관리' kor='코드관리' eng='' jpn='' chn='代码管理' />
+	<t value='부서' kor='부서' eng='' jpn='' chn='部署' />
+	<t value='직급' kor='직급' eng='' jpn='' chn='职责' />
+	<t value='수정' kor='수정' eng='' jpn='' chn='修订' />
+	<t value='추가' kor='추가' eng='' jpn='' chn='添加' />
+	<t value='관리자' kor='관리자' eng='' jpn='' chn='管理者' />
+	<t value='안녕하세요' kor='안녕하세요' eng='' jpn='' chn='您好！' />
+	<t value='로그 아웃' kor='로그 아웃' eng='' jpn='' chn='退出' />
+
+
+	<t value='환경설정' kor='환경설정' eng='' jpn='' chn='环境设置' />
+	<t value='추가신청관리' kor='추가신청관리' eng='' jpn='' chn='追加申请管理' />
+	<t value='예약관리' kor='예약관리' eng='' jpn='' chn='预约管理' />
+	<t value='정산관리' kor='정산관리' eng='' jpn='' chn='结算管理' />
+	<t value='자료가 없습니다.' kor='자료가 없습니다.' eng='' jpn='' chn='没有资料' />
+	<t value='처음' kor='처음' eng='' jpn='' chn='返回首页' />
+	<t value='부서선택' kor='부서선택' eng='' jpn='' chn='选择部门' />
+	<t value='직급선택' kor='직급선택' eng='' jpn='' chn='选择职位' />
+	<t value='소속병원' kor='소속병원' eng='' jpn='' chn='所属医院' />
+	<t value='세부부서' kor='세부부서' eng='' jpn='' chn='具体部门' />
+	<t value='진료비' kor='진료비' eng='' jpn='' chn='诊疗费' />
+	<t value='자기 소개' kor='자기 소개' eng='' jpn='' chn='自我介绍' />
+	<t value='자기소개' kor='자기소개' eng='' jpn='' chn='自我介绍' />
+	<t value='소개사진' kor='소개사진' eng='' jpn='' chn='照片' />
+	<t value='소개 사진' kor='소개 사진' eng='' jpn='' chn='照片' />
+	<t value='소개동영상' kor='소개동영상' eng='' jpn='' chn='小视频' />
+	<t value='소개 동영상' kor='소개 동영상' eng='' jpn='' chn='小视频' />
+	<t value='의사소개 사진 보기' kor='의사소개 사진 보기' eng='' jpn='' chn='查看医生图片' />
+	<t value='의사소개 동영상' kor='의사소개 동영상' eng='' jpn='' chn='查看医生视频' />
+	<t value='문진 스케줄 관리' kor='문진 스케줄 관리' eng='' jpn='' chn='日程安排' />
+	<t value='문진 스케줄관리' kor='문진 스케줄관리' eng='' jpn='' chn='日程安排' />
+	<t value='닫기' kor='닫기' eng='' jpn='' chn='关闭' />
+	<t value='예약대기' kor='예약대기' eng='' jpn='' chn='已预约' />
+	<t value='예약접수' kor='예약접수' eng='' jpn='' chn='接收预约' />
+	<t value='예약완료' kor='예약완료' eng='' jpn='' chn='完成预约' />
+	<t value='진료완료' kor='진료완료' eng='' jpn='' chn='诊疗结束' />
+	<t value='예약취소' kor='예약취소' eng='' jpn='' chn='取消预约' />
+	<t value='취소요청' kor='취소요청' eng='' jpn='' chn='取消邀请' />
+	<t value='예약시간' kor='예약시간' eng='' jpn='' chn='预约时间' />
+	<t value='예약의사' kor='예약의사' eng='' jpn='' chn='预约医生' />
+	<t value='예약상태' kor='예약상태' eng='' jpn='' chn='预约状态' />
+	<t value='예약금액' kor='예약금액' eng='' jpn='' chn='预约金额' />
+	<t value='취소' kor='취소' eng='' jpn='' chn='取消' />
+	<t value='사진파일첨부' kor='사진파일첨부' eng='' jpn='' chn='照片附件' />
+	<t value='파일첨부' kor='파일첨부' eng='' jpn='' chn='添加文件' />
+	<t value='섬네일' kor='섬네일' eng='' jpn='' chn='缩略图（预览）' />
+	<t value='스케줄' kor='스케줄' eng='' jpn='' chn='日程' />
+	<t value='등록일자' kor='등록일자' eng='' jpn='' chn='登录日期' />
+	<t value='등록시간' kor='등록시간' eng='' jpn='' chn='登录时间' />
+	<t value='기본설정' kor='기본설정' eng='' jpn='' chn='基本设置' />
+	<t value='홈페이지 제목' kor='홈페이지 제목' eng='' jpn='' chn='主页标题' />
+	<t value='최고관리자' kor='최고관리자' eng='' jpn='' chn='最高管理者' />
+	<t value='영상진료 시간' kor='영상진료 시간' eng='' jpn='' chn='视频诊疗时间' />
+	<t value='예약취소대기 시간' kor='예약취소대기 시간' eng='' jpn='' chn='取消预约等待时间' />
+	<t value='수수료' kor='수수료' eng='' jpn='' chn='手续费' />
+	<t value='XSS / CSRF 방지' kor='XSS / CSRF 방지' eng='' jpn=''
+		chn='XSS / CSRF 防止' />
+	<t value='추가신청목록' kor='추가신청목록' eng='' jpn='' chn='追加申请目录' />
+	<t value='요청일자' kor='요청일자' eng='' jpn='' chn='邀请日期' />
+	<t value='요청회원' kor='요청회원' eng='' jpn='' chn='邀请会员' />
+	<t value='추가요청의사' kor='추가요청의사' eng='' jpn='' chn='追加邀请医生' />
+	<t value='처리상태' kor='처리상태' eng='' jpn='' chn='处理状态' />
+	<t value='처리일자' kor='처리일자' eng='' jpn='' chn='处理日期' />
+	<t value='예약목록' kor='예약목록' eng='' jpn='' chn='预约目录' />
+	<t value='예약자명' kor='예약자명' eng='' jpn='' chn='预约者名称' />
+	<t value='예약자ID' kor='예약자ID' eng='' jpn='' chn='预约者ID' />
+	<t value='의사명' kor='의사명' eng='' jpn='' chn='医生姓名' />
+	<t value='의사ID' kor='의사ID' eng='' jpn='' chn='医生ID' />
+	<t value='예약번호' kor='예약번호' eng='' jpn='' chn='预约号码' />
+	<t value='예약일자' kor='예약일자' eng='' jpn='' chn='预约日期' />
+	<t value='예약자' kor='예약자' eng='' jpn='' chn='预约者' />
+	<t value='예약의사' kor='예약의사' eng='' jpn='' chn='预约医生' />
+	<t value='예약일시' kor='예약일시' eng='' jpn='' chn='预约日期' />
+	<t value='지불금액' kor='지불금액' eng='' jpn='' chn='支付金额' />
+	<t value='환불금액' kor='환불금액' eng='' jpn='' chn='退款金额' />
+	<t value='예약일시' kor='예약일시' eng='' jpn='' chn='预约日期' />
+	<t value='수정일시' kor='수정일시' eng='' jpn='' chn='修改日期' />
+	<t value='검색된 예약이 없습니다' kor='검색된 예약이 없습니다' eng='' jpn='' chn='没有搜索到预约' />
+	<t value='예약정보' kor='예약정보' eng='' jpn='' chn='预约信息' />
+	<t value='예약요금' kor='예약요금' eng='' jpn='' chn='预约金额' />
+	<t value='상태변경' kor='상태변경' eng='' jpn='' chn='状态变更' />
+	<t value='예약등록일시' kor='예약등록일시' eng='' jpn='' chn='预约登陆日期' />
+	<t value='결제상세정보' kor='결제상세정보' eng='' jpn='' chn='结算详细信息' />
+	<t value='결제금액' kor='결제금액' eng='' jpn='' chn='结算金额' />
+	<t value='미수금' kor='미수금' eng='' jpn='' chn='应收款' />
+	<t value='결제내역 수정' kor='결제내역 수정' eng='' jpn='' chn='修改结算清单' />
+	<t value='성명' kor='성명' eng='' jpn='' chn='姓名' />
+	<t value='성별' kor='성별' eng='' jpn='' chn='性别' />
+	<t value='나이' kor='나이' eng='' jpn='' chn='年龄' />
+	<t value='환자 관계' kor='환자 관계' eng='' jpn='' chn='与患者关心' />
+	<t value='거주도시' kor='거주도시' eng='' jpn='' chn='居住城市' />
+	<t value='진료기록' kor='진료기록' eng='' jpn='' chn='病例' />
+	<t value='예약자 정보 수정' kor='예약자 정보 수정' eng='' jpn='' chn='修改预约者信息' />
+	<t value='진료예약정보' kor='진료예약정보' eng='' jpn='' chn='问诊预约信息' />
+	<t value='예약건수' kor='예약건수' eng='' jpn='' chn='预约总数' />
+	<t value='예약총액' kor='예약총액' eng='' jpn='' chn='预约总额' />
+	<t value='수수료제외' kor='수수료제외' eng='' jpn='' chn='手续费除外' />
+	<t value='정산금액' kor='정산금액' eng='' jpn='' chn='结算金额' />
+	<t value='미정산금액' kor='미정산금액' eng='' jpn='' chn='未结算金额' />
+	<t value='정산입력' kor='정산입력' eng='' jpn='' chn='输入结算' />
+	<t value='정산내역' kor='정산내역' eng='' jpn='' chn='结算清单' />
+	<t value='합 계' kor='합 계' eng='' jpn='' chn='合计' />
+	<t value='총 매출액' kor='총 매출액' eng='' jpn='' chn='销售总额' />
+	<t value='정산금입력' kor='정산금입력' eng='' jpn='' chn='输入结算金额' />
+	<t value='정산일자' kor='정산일자' eng='' jpn='' chn='结算日期' />
+	<t value='금액' kor='금액' eng='' jpn='' chn='金额' />
+	<t value='메인이미지관리' kor='메인이미지관리' eng='' jpn='' chn='主页图片管理' />
+
+	<t value='요청' kor='요청' eng='' jpn='' chn='说明病情' />
+	<t value='처리완료' kor='처리완료' eng='' jpn='' chn='问诊结束' />
+	<t value='처리중' kor='처리중' eng='' jpn='' chn='诊断中' />
+	<t value='건' kor='건' eng='' jpn='' chn='件' />
+	<t value='시간' kor='시간' eng='' jpn='' chn='时间' />
+
+
+	<t value='의사목록' kor='의사목록' eng='' jpn='' chn='预约医生' />
+	<t value='선택' kor='선택' eng='' jpn='' chn='选择' />
+	<t value='예약일시수정하기' kor='예약일시수정하기' eng='' jpn='' chn='修改预订日期 ' />
+	<t value='예약일시수정' kor='예약일시수정' eng='' jpn='' chn='修改预订日期 ' />
+
+	<t value='영상통화기록' kor='영상통화기록' eng='' jpn='' chn='视频记录' />
+	<t value='기록일자' kor='기록일자' eng='' jpn='' chn='记录日期' />
+	<t value='회원ID' kor='회원ID' eng='' jpn='' chn='会员ID' />
+	<t value='회원명' kor='회원명' eng='' jpn='' chn='会员名' />
+	<t value='회원구분' kor='회원구분' eng='' jpn='' chn='会员区分' />
+	<t value='시작/종료' kor='시작/종료' eng='' jpn='' chn='开始/结束' />
+	<t value='통화종료구분' kor='통화종료구분' eng='' jpn='' chn='通话结束区分' />
+	<t value='통화타입' kor='통화타입' eng='' jpn='' chn='通话类型' />
+	<t value='통화연결시간' kor='통화연결시간' eng='' jpn='' chn='通话连接时间' />
+	<t value='연결채널ID' kor='연결채널ID' eng='' jpn='' chn='链接频道ID' />
+	<t value='일반회원' kor='일반회원' eng='' jpn='' chn='一般会员' />
+	<t value='의사회원' kor='의사회원' eng='' jpn='' chn='医生会员' />
+	<t value='종료됨' kor='종료됨' eng='' jpn='' chn='已结束' />
+	<t value='완료됨' kor='완료됨' eng='' jpn='' chn='已完成' />
+	<t value='나감' kor='나감' eng='' jpn='' chn='退出' />
+	<t value='오류' kor='오류' eng='' jpn='' chn='差错' />
+	<t value='발신자' kor='발신자' eng='' jpn='' chn='发信人' />
+	<t value='수신자' kor='수신자' eng='' jpn='' chn='收信人' />
+	<t value='전체' kor='전체' eng='' jpn='' chn='全部' />
+	<t value='정산기록-부서별' kor='정산기록-부서별' eng='' jpn='' chn='对账记录-按部署' />
+	<t value='정산기록-병원별' kor='정산기록-병원별' eng='' jpn='' chn='对账记录-按医院' />
+	<t value='정산기록-월별' kor='정산기록-월별' eng='' jpn='' chn='对账记录-按月份' />
+	<t value='정산기록-년별' kor='정산기록-년별' eng='' jpn='' chn='对账记录-按年份' />
+	<t value='엑셀출력하기' kor='엑셀출력하기' eng='' jpn='' chn='调出excel' />
+	<t value='부서명' kor='부서명' eng='' jpn='' chn='部署名' />
+	<t value='병원명' kor='병원명' eng='' jpn='' chn='医院名' />
+	<t value='예약년월' kor='예약년월' eng='' jpn='' chn='预约年月' />
+	<t value='예약년도' kor='예약년도' eng='' jpn='' chn='预约年度' />
+	<t value='푸시메시지' kor='푸시메시지' eng='' jpn='' chn='推送短信' />
+	<t value='푸시전송기록' kor='푸시전송기록' eng='' jpn='' chn='推送发送记录' />
+	<t value='푸시메시지 전송' kor='푸시메시지 전송' eng='' jpn='' chn='发送推送信息' />
+	<t value='전송구분' kor='전송구분' eng='' jpn='' chn='发送区分' />
+	<t value='전체전송' kor='전체전송' eng='' jpn='' chn='全部发送' />
+	<t value='선택전송' kor='선택전송' eng='' jpn='' chn='选择发送' />
+	<t value='의사회원 전송' kor='의사회원 전송' eng='' jpn='' chn='医生会员发送' />
+	<t value='일반회원 전송' kor='일반회원 전송' eng='' jpn='' chn='一般会员发送' />
+	<t value='전송내용' kor='전송내용' eng='' jpn='' chn='发送内容' />
+	<t value='선택된회원' kor='선택된회원' eng='' jpn='' chn='被选择的会员' />
+	<t value='전송하기' kor='전송하기' eng='' jpn='' chn='发送' />
+	<t value='푸시전송 회원 선택' kor='푸시전송 회원 선택' eng='' jpn='' chn='推送发送会员选择' />
+	<t value='회원구분' kor='회원구분' eng='' jpn='' chn='会员区分' />
+	<t value='일반' kor='일반' eng='' jpn='' chn='一般' />
+	<t value='의사' kor='의사' eng='' jpn='' chn='医生' />
+	<t value='전부선택' kor='전부선택' eng='' jpn='' chn='全部选择' />
+	<t value='전송회원 ID' kor='전송회원 ID' eng='' jpn='' chn='发送会员ID' />
+	<t value='더보기' kor='더보기' eng='' jpn='' chn='查看更多' />
+	
+	<t value='쿠폰결제금액' kor='쿠폰결제금액' eng='' jpn='' chn='优惠券结算金额' />
+	<t value='쿠폰이름' kor='쿠폰이름' eng='' jpn='' chn='优惠券名字' />
+	<t value='쿠폰금액' kor='쿠폰금액' eng='' jpn='' chn='优惠券金额' />
+	<t value='쿠폰번호' kor='쿠폰번호' eng='' jpn='' chn='优惠券号码' />
+	<t value='쿠폰정보' kor='쿠폰정보' eng='' jpn='' chn='优惠券' />
+
+
+</root>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+    <sqlMap namespace="Sms4Message">
+        
+        
+         <select id="list">
+                SELECT
+                <isEqual property="is_count" compareValue="Y">
+                    count(*) as cnt
+                </isEqual>
+                <isNotEqual property="is_count" compareValue="Y">
+                    a.*
+                    , a.msg_sms_name msg_name
+                    , a.msg_sms_content msg_content
+                </isNotEqual>
+                FROM
+                      sms4_message a
+                WHERE
+                        1=1
+                         <isNotEmpty property="sfl">
+                             <isNotEmpty property="stx"  prepend="AND">
+                                    $sfl$ like '%$stx$%'
+                             </isNotEmpty>
+                          </isNotEmpty>
+                          $where_query$
+                <isNotEqual property="is_count" compareValue="Y">
+                <isNotEmpty property="sst">
+                    ORDER BY
+                        <isEqual property="sod" compareValue="asc">
+                            if($sst$='' OR $sst$ is null, '힣힣힣힣힣힣', $sst$) $sod$ 
+                        </isEqual>  
+                        <isEqual property="sod" compareValue="desc">
+                            $sst$ $sod$ 
+                        </isEqual>  
+                        $order_query$
+                </isNotEmpty>
+                Limit
+                    $from_record$, $rows$
+                </isNotEqual>
+        </select>
+        
+        
+        <select id="get">
+            SELECT
+                *
+            FROM
+                sms4_message
+            WHERE
+                no = #no#
+        </select> 
+        
+
+        <!--설정된 업체의 메시지 목록 가져오기 (입금결제 시 OR 자동취소 시)-->
+        <select id="get_com_msg">
+            SELECT
+                *
+            FROM   
+                sms4_message
+            WHERE
+                concat('|', msg_com_no, '|') LIKE '%|$com_no$|%'
+                AND
+                    msg_when = #msg_when#
+        </select>
+
+        
+        <insert id="insert">
+            INSERT INTO
+                sms4_message
+            SET
+                msg_when = #msg_when#
+                , msg_n_day = #msg_n_day#
+                , msg_n_time = #msg_n_time#
+                , msg_com_no = #msg_com_no#
+                , msg_pno = #msg_pno#
+                , msg_send_number = #msg_send_number#
+                , msg_type = #msg_type#
+                , msg_sms_name = #msg_sms_name#
+                , msg_sms_content = #msg_sms_content#
+                , reg_date = now()
+                , reg_id = #member_id#
+                , reg_ip = #ip#
+        </insert>
+        
+        <update id="update">
+                UPDATE sms4_message 
+                SET
+                    msg_when = #msg_when#
+                    , msg_n_day = #msg_n_day#
+                    , msg_n_time = #msg_n_time#
+                    , msg_com_no = #msg_com_no#
+                    , msg_pno = #msg_pno#
+                    , msg_send_number = #msg_send_number#
+                    , msg_type = #msg_type#
+                    , msg_sms_name = #msg_sms_name#
+                    , msg_sms_content = #msg_sms_content#
+                    , mod_date = now()
+                    , mod_id = #member_id#
+                    , mod_ip = #ip#
+                 WHERE
+                    no = #no#
+        </update>
+
+        
+        <update id="update_field">
+                UPDATE 
+                    sms4_message
+                SET
+                    $field$ = #value#
+                    , mod_date = now()
+                    , mod_id = #member_id#
+                    , mod_ip = #ip#
+                WHERE
+                    no = #no#
+        </update>
+
+
+        <delete id="delete">
+                DELETE FROM sms4_message WHERE no = #no#
+        </delete>
+        
+                  
+
+    </sqlMap>

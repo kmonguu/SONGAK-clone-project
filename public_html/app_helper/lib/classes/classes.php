@@ -1,0 +1,9 @@
+<?
+//###############################################
+include_once("hp_board.class.php");
+include_once("hp_push.class.php");
+include_once("hp_notice.class.php");
+include_once("hp_modify_req.class.php");
+include_once("hp_util.class.php");
+//###############################################
+?>

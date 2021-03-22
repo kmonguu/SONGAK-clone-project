@@ -1,0 +1,7 @@
+@charset "UTF-8";
+#wrap {width:320px; height:auto; margin:0 auto;}
+#wrap header { height:97px; margin:0 auto; position:relative;}
+#wrap section { height:auto; margin:0 auto; }
+#wrap section.sub { width:320px; }
+#wrap nav { height:27px;}
+#wrap footer { height:auto; margin:0 auto; }

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+    <sqlMap namespace="Utilfile">
+        
+        
+        <select id="get_mainimage_link">
+                 SELECT
+                     *
+                 FROM
+                     g4_image_link
+                 WHERE
+                     image_no = #image_no#
+            </select>
+            
+            <insert id="insert_mainimage_link">
+                 INSERT INTO
+                     g4_image_link
+                 SET
+                     image_no = #image_no#,
+                     link_url = #link_url#,
+                     target = #target#
+            </insert>
+            
+            <update id="update_mainimage_link">
+                 UPDATE
+                    g4_image_link
+                 SET
+                     link_url = #link_url#,
+                     target = #target#
+                  WHERE
+                     image_no = #image_no#
+            </update>
+            
+            
+            
+            
+            
+            <select id="get_image_content">
+                 SELECT
+                     *
+                 FROM
+                     $tablename$
+                 WHERE
+                     image_no = #image_no#
+            </select>
+            
+            <insert id="insert_image_content">
+                 INSERT INTO
+                     $tablename$
+                 SET
+                     image_no = #image_no#,
+                     content = #content#,
+                     reg_date = now()
+            </insert>
+            
+            <update id="update_image_content">
+                 UPDATE
+                    $tablename$
+                 SET
+                     content = #content#,
+                     mod_date = now()
+                  WHERE
+                     image_no = #image_no#
+            </update>
+            
+            <delete id="delete_image_content">
+                DELETE
+                FROM
+                    $tablename$
+                WHERE
+                    image_no = #image_no#
+            </delete>
+            
+        
+        
+    </sqlMap>

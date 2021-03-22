@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+    <sqlMap namespace="HpBoard">
+        
+        
+         <select id="list">
+	            SELECT
+	            <isEqual property="is_count" compareValue="Y">
+	                count(*) as cnt
+	            </isEqual>
+	            <isNotEqual property="is_count" compareValue="Y">
+	                a.*
+	            </isNotEqual>
+	            FROM
+	                  it9_gcm_msg a
+	            WHERE
+	                     1 = 1
+	                     <isNotEmpty property="sfl">
+	                         <isNotEmpty property="stx"  prepend="AND">
+	                                $sfl$ like '%$stx$%'
+	                         </isNotEmpty>
+	                     </isNotEmpty>
+	                     $where_query$
+	            <isNotEqual property="is_count" compareValue="Y">
+	             ORDER BY
+	                   <isNotEmpty property="sst">
+			                <isEqual property="sod" compareValue="asc">
+			                    if($sst$='' OR $sst$ is null, '힣힣힣힣힣힣', $sst$) $sod$ 
+			                </isEqual>  
+			                <isEqual property="sod" compareValue="desc">
+			                    $sst$ $sod$ 
+			                </isEqual>  
+	                    </isNotEmpty>
+	                    $order_query$
+	            Limit
+	                $from_record$, $rows$
+	            </isNotEqual>
+        </select>
+
+
+        <select id="get_board_article">
+            SELECT 
+                *
+            FROM
+                g4_write_$bo_table$
+            WHERE  
+                wr_id = #wr_id#
+        </select>
+
+        <select id="get_new_cnt">
+            SELECT 
+                count(*) cnt
+            FROM
+                it9_gcm_msg a
+            WHERE
+                is_read != 1
+        </select>
+
+
+        <select id="get_board">
+            SELECT * FROM g4_board WHERE bo_table = #bo_table#
+        </select>
+        
+        
+        <select id="get">
+            SELECT
+                *
+            FROM
+                it9_gcm_msg
+            WHERE
+                msg_no = #msg_no#
+        </select> 
+        
+
+        <insert id="insert">
+            INSERT INTO
+                it9_gcm_msg
+            SET
+                mb_id = #mb_id#
+                , msg_title = #msg_title#
+                , msg_content = #msg_content#
+                , msg_type = #msg_type#
+                , msg_date = now()
+                , bo_table = #bo_table#
+                , wr_id = #wr_id#
+        </insert>
+        
+        <update id="update">
+                UPDATE it9_gcm_msg 
+                SET
+                    mb_id = #mb_id#
+                    , msg_title = #msg_title#
+                    , msg_content = #msg_content#
+                    , msg_type = #msg_type#
+                    , msg_date = now()
+                    , bo_table = #bo_table#
+                    , wr_id = #wr_id#
+                 WHERE
+                    msg_no = #msg_no#
+        </update>
+        
+
+        <update id="update_field">
+                UPDATE it9_gcm_msg
+                SET
+                    $field$ = #value#
+                WHERE
+                    msg_no = #msg_no#
+        </update>
+
+
+        <update id="update_is_read">
+                UPDATE it9_gcm_msg
+                SET
+                    is_read = 1
+                WHERE  
+                    wr_id = #wr_id#
+                    AND
+                    bo_table = #bo_table#
+        </update>
+        
+        <delete id="delete">
+                DELETE FROM
+                    it9_gcm_msg
+                WHERE 
+                    msg_no = #msg_no#
+        </delete>
+
+
+        
+
+    </sqlMap>

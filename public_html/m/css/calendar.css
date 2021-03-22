@@ -1,0 +1,103 @@
+@charset "UTF-8";
+
+/*
+Dual MODE
+*/
+.MCalendar {position:absolute;height:275px;top:253px;left:201px;z-index:999;width:100%;border:1px solid #898989;background:#fff;padding:10px;}
+.MCalendar2 {position:absolute;height:275px;top:253px;left:371px;z-index:999;width:100%;border:1px solid #898989;background:#fff;padding:10px;}
+.MCalendar3 {position:absolute;height:275px;top:-297px;left:201px;z-index:999;width:100%;border:1px solid #898989;background:#fff;padding:10px;}
+
+ul {list-style:none;}
+ul { margin: 0 0 0 0; padding: 0; }
+li { margin: 0; padding: 0; }
+
+.Calendarbox { background:#ffffff; border:1px solid #dddddd; width:580px; box-sizing:border-box; padding:20px 5px; display:inline-block; margin:0 0 0 -1px; z-index:10; position:relative; }
+.Calendartop {position:relative;float:left;width:100%;height:36px;display:inline-block;}
+.Calendartop ul {float:left;width:100%;display:inline-block;}
+.Calendartop ul li {float:left;font-size:18px;color:#919191;line-height:1px;}
+.Calendartop ul li span {font-size:22px;color:#1f1f1f;font-weight:bold;}
+.Calendartop ul li.leftt {line-height:20px;padding:0 0 0 10px;}
+.Calendartop ul li.rightt {position:absolute;line-height:23px;right:34px;}
+.Calendartop ul li.right {float:right;text-align:right;}
+.Calendercon {float:left;width:100%;display:inline-block;}
+.Calenderconl {float:left;width:49%;display:inline-block;}
+.Calenderconr {float:left;width:49%;margin-left:2%;display:inline-block;}
+.Cdetail {float:right;height:22px;margin:13px 0 0 0;padding:0 5px 0 0;}
+.Cdetail ul {float:left;font-size:16px;color:#1f1f1f;}
+.Cdetail ul li {float:left;line-height:15px;padding:0 0 0 5px;}
+.Cdetail ul li.none {float:left;width:10px;height:13px;border:1px solid #dbdbdb;background:#dbdbdb;}
+.Cdetail ul li.none2 {padding:0 13px 0 5px;}
+.Cdetail ul li.select {float:left;width:10px;height:13px;border:1px solid #dbdbdb;background:#1f1f1f;color:#fff;}
+
+table.c1 { width:100%; border:0; background:#fff; }
+table.c1 th { padding:2px 0px 2px 0px; font-size:15px; background:#fff; font-weight:400; }
+table.c1 td { border:1px solid #dbdbdb;padding:7px 3px;text-align: center;vertical-align:middle;font-size:16px;color:#555555;background:#fff;width:26px;}
+table.c1 td a:link { color:#555555;text-decoration:none;}
+table.c1 td a:visited { color:#555555;text-decoration:none;}
+
+table.c1 td.on { color:#ffffff;}
+table.c1 td.on a:link { color:#ffffff;}
+table.c1 td.on a:visited { color:#ffffff;}
+table.c1 th.th {border-left:0px;font-weight:normal;}
+table.c1 th.th-left {color:#bc0023;}
+table.c1 td.td-off {border:1px solid #ececec;color:#d2d2d2;}
+table.c1 td.td-none {background:#dbdbdb;color:#ffffff;}
+table.c1 td.td-none a:link {color:#989898;}
+table.c1 td.td-select {background:#1f1f1f;color:#fff;border:0px;}
+table.c1 thead th, table.t1 tfoot th { text-align: center; vertical-align: middle;}
+
+table.c1 td.td-select-start { border-top-left-radius:20px; border-bottom-left-radius: 20px;}
+table.c1 td.td-select-end { border-top-right-radius:20px; border-bottom-right-radius: 20px;}
+
+table.c1 td.td-accom-inout {background-color:#ffffff !important; border:1px dashed gray;}
+
+
+
+
+/*
+Single MODE
+*/
+.MCalendar_s {position:absolute;height:275px;top:253px;left:201px;z-index:999;width:100%;border:1px solid #898989;background:#fff;padding:10px;}
+.MCalendar_s2 {position:absolute;height:275px;top:253px;left:371px;z-index:999;width:100%;border:1px solid #898989;background:#fff;padding:10px;}
+.MCalendar_s3 {position:absolute;height:275px;top:-297px;left:201px;z-index:999;width:100%;border:1px solid #898989;background:#fff;padding:10px;}
+
+
+.Calendarbox_s { background:#ffffff; border:1px solid #dddddd; width:300px; box-sizing:border-box; padding:20px 5px; display:inline-block; margin:0 0 0 -1px; z-index:10; position:relative; }
+.Calendartop_s {position:relative;float:left;width:100%;height:36px;display:inline-block;}
+.Calendartop_s ul {float:left;width:100%;display:inline-block;}
+.Calendartop_s ul li {float:left;font-size:18px;color:#919191;line-height:1px;}
+.Calendartop_s ul li span {font-size:22px;color:#1f1f1f;font-weight:bold;}
+.Calendartop_s ul li.leftt {line-height:20px;padding:0 0 0 10px;}
+.Calendartop_s ul li.rightt {position:absolute;line-height:23px;right:34px;}
+.Calendartop_s ul li.right {float:right;text-align:right;}
+.Calendercon_s {float:left;width:100%;display:inline-block;}
+.Calenderconl_s {float:left;width:100%;display:inline-block;}
+.Calenderconr_s {float:left;width:100%;margin-left:2%;display:inline-block;}
+.Cdetail_s {float:right;height:22px;margin:13px 0 0 0;padding:0 5px 0 0;}
+.Cdetail_s ul {float:left;font-size:16px;color:#1f1f1f;}
+.Cdetail_s ul li {float:left;line-height:15px;padding:0 0 0 5px;}
+.Cdetail_s ul li.none {float:left;width:10px;height:13px;border:1px solid #dbdbdb;background:#dbdbdb;}
+.Cdetail_s ul li.none2 {padding:0 13px 0 5px;}
+.Cdetail_s ul li.select {float:left;width:10px;height:13px;border:1px solid #dbdbdb;background:#1f1f1f;color:#fff;}
+
+table.c1_s { width:100%; border:0; background:#fff; }
+table.c1_s th { padding:2px 0px 2px 0px; font-size:15px; background:#fff; font-weight:400; }
+table.c1_s td { border:1px solid #dbdbdb;padding:7px 3px;text-align: center;vertical-align:middle;font-size:16px;color:#555555;background:#fff;width:26px;}
+table.c1_s td a:link { color:#555555;text-decoration:none;}
+table.c1_s td a:visited { color:#555555;text-decoration:none;}
+
+table.c1_s td.on { color:#ffffff;}
+table.c1_s td.on a:link { color:#ffffff;}
+table.c1_s td.on a:visited { color:#ffffff;}
+table.c1_s th.th {border-left:0px;font-weight:normal;}
+table.c1_s th.th-left {color:#bc0023;}
+table.c1_s td.td-off {border:1px solid #ececec;color:#d2d2d2;}
+table.c1_s td.td-none {background:#dbdbdb;color:#ffffff;}
+table.c1_s td.td-none a:link {color:#989898;}
+table.c1_s td.td-select {background:#1f1f1f;color:#fff;border:0px;}
+table.c1_s thead th, table.t1 tfoot th { text-align: center; vertical-align: middle;}
+
+table.c1_s td.td-select-start { border-top-left-radius:20px; border-bottom-left-radius: 20px;}
+table.c1_s td.td-select-end { border-top-right-radius:20px; border-bottom-right-radius: 20px;}
+
+table.c1_s td.td-accom-inout {background-color:#ffffff !important; border:1px dashed gray;}

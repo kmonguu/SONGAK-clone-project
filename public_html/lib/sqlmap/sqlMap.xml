@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+
+<!DOCTYPE sqlMapConfig      
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-config-2.dtd">    
+	
+<sqlMapConfig>
+
+	<!-- These settings control SqlMap configuration details, primarily to do with transaction            
+	management.  They are all optional (see the Developer Guide for more).  -->      
+	<settings/>
+	
+	<!-- Configure a datasource to use with this SQL Map using SimpleDataSource.           -->
+
+	<!-- /dbconfig.php 파일에거 가져오도록 /lib/fpbatis.php파일 수정함    -->
+	
+	<!-- Identify all SQL Map XML files to be loaded by this SQL map.  Notice the paths            
+	are relative to the classpath.   -->
+	
+	
+	<!-- COMMON -->
+	<sqlMap resource="member.xml" />
+	
+	<sqlMap resource="board.xml" />
+	<sqlMap resource="board_comment.xml" />
+	
+	<sqlMap resource="yc4.xml" />
+	<sqlMap resource="yc4_coupon.xml" />
+	<sqlMap resource="yc4_item_option.xml" />	
+	<sqlMap resource="yc4_multi_delivery.xml" />
+	
+	<sqlMap resource="log.xml" />
+	<sqlMap resource="code.xml" />
+	
+	<sqlMap resource="utilfile.xml" />
+
+
+	<!-- APIStore KKO -->
+	<sqlMap resource="apistore_kko_config.xml" />
+	<sqlMap resource="apistore_kko_message.xml" />
+	<sqlMap resource="apistore_kko_result.xml" />
+	<!-- APIStore KKO -->
+
+	<!-- 문자관련 -->
+	<sqlMap resource="controller/sms4_message.xml" />
+	<sqlMap resource="controller/sms4_stat.xml" />
+	
+</sqlMapConfig>  

@@ -1,0 +1,87 @@
+@charset "UTF-8";
+
+article, aside, figure, footer, header, hgroup,
+menu, nav, section { display: block; }
+
+h1,h2,h3,h4,h5 { font-size:inherit; color:inherit; line-height:inherit; font-weight:inherit; margin:0; }
+p { line-height:1.5em; margin:0; padding:0; }
+html { overflow-y:scroll; }
+body { margin:0; padding:0;}
+img { border:0; }
+
+
+
+
+body {-webkit-text-size-adjust: 100%;}
+
+body, td, p, input, button, textarea, select, .c1 { font-family:'Noto Sans KR',sans-serif, Dotum, 돋움; font-size:17px; color:#222; }
+
+form { margin:0px; }
+
+input[type="submit"], input[type="button"] { cursor:pointer; }
+img[role="button"],
+button { padding:0px; cursor:pointer; }
+
+table > caption { position:relative; left:-9999px; height:0px; }
+
+a:link, a:visited, a:active { text-decoration:none; color:#555555; }
+a:hover { text-decoration:none;  color:#555555;}
+
+a.menu:link, a.menu:visited, a.menu:active { text-decoration:none; color:#454545; }
+a.menu:hover { text-decoration:none; }
+
+.member {font-weight:bold;color:#888888;}
+.guest  {font-weight:normal;color:#888888;}
+
+.lh { line-height: 150%; }
+.jt { text-align:justify; }
+
+.li { font-weight:bold; font-size:18px; vertical-align:-4px; color:#66AEAD; }
+
+.ul { list-style-type:square; color:#66AEAD; }
+
+.ct { font-family: Verdana, 굴림; color:#222222; }
+
+.ed { border:1px solid #CCCCCC; }
+.tx { border:1px solid #CCCCCC; }
+
+.small { font-size:8pt; font-family:돋움; }
+.cloudy, a.cloudy {color:#888888;} /* 흐림 */
+
+
+input.ed { border:1px solid #cfcfcf; padding:3px 0 3px 10px; box-sizing:border-box; }
+input. { border:1px solid #cfcfcf; padding:3px 0 3px 10px; box-sizing:border-box; }
+input.ed_password { border:1px solid #cfcfcf; padding:0 0 0 10px; box-sizing:border-box; }
+textarea.tx { border:1px solid #cfcfcf; padding:5px; box-sizing:border-box; }
+
+/*
+input.ed { height:20px; border:1px solid #9A9A9A; border-right:1px solid #D8D8D8; border-bottom:1px solid #D8D8D8; padding:3px 2px 0 2px; }
+input.ed_password { height:20px; border:1px solid #9A9A9A; border-right:1px solid #D8D8D8; border-bottom:1px solid #D8D8D8; padding:3px 2px 0 2px; font:10px Tahoma; }
+textarea.tx { border:1px solid #9A9A9A; border-right:1px solid #D8D8D8; border-bottom:1px solid #D8D8D8; padding:2px; }
+*/
+
+select { 
+	padding:0 30px 0 10px; box-sizing:border-box; background:url("/img/select_arrow.png") no-repeat right 10px center; 
+	background:#fff;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+select::-ms-expand { display:none; }
+
+.icon_item_type1 {display:inline-block; box-sizing:border-box; border:1px solid #3cafab; color:#3cafab; width:50px; height:25px; margin-right:2px; font-size:15px; font-weight:500; line-height:22px; text-align:center;}
+.icon_item_type2 {display:inline-block; box-sizing:border-box; background:#222222; color:#fff; width:50px; height:25px; margin-right:2px; font-size:15px; font-weight:500; line-height:24px; text-align:center;}
+.icon_item_type3 {display:inline-block; box-sizing:border-box; background:#e90068; color:#fff; width:50px; height:25px; margin-right:2px; font-size:15px; font-weight:500; line-height:24px; text-align:center;}
+.icon_item_type4 {display:inline-block; box-sizing:border-box; border:1px solid #555555; color:#555555; width:50px; height:25px; margin-right:2px; font-size:15px; font-weight:500; line-height:22px; text-align:center;}
+.icon_item_type5 {display:inline-block; box-sizing:border-box; background:#ff4242; color:#fff; width:50px; height:25px; margin-right:2px; font-size:15px; font-weight:500; line-height:24px; text-align:center;}
+
+
+/* 체크박스, 라디오박스 라인조절 */
+.checkbox-inline, 
+.radio-inline { padding-top: 0px; margin-top: 0; margin-bottom: 0; }
+.checkbox-inline, 
+.radio-inline { position:relative; display:inline-block; padding-left:20px; margin-bottom:0; font-weight:400; vertical-align:middle; cursor:pointer }
+.checkbox-inline+.checkbox-inline,.radio-inline+.radio-inline { margin-top:0; margin-left:10px; }
+.checkbox-inline input[type=checkbox], 
+.radio-inline input[type=radio] { position:absolute; margin-top:1px; margin-left:-20px; }
+

@@ -1,0 +1,100 @@
+function home(){location.href="/index.php";} // 홈
+function register(){location.href="/bbs/register.php";} // 회원가입
+function adm(){location.href="/adm";} //관리자
+function login(){location.href="/bbs/login.php?url=/index.php";} //로그인
+function logout(){location.href="/bbs/logout.php?url=/index.php";} //로그아웃
+function cart(){location.href="/shop/cart.php";} //장바구니
+function mypage(){location.href="/shop/mypage.php";} //마이페이지
+function sand(){location.href="/bbs/login.php?url=..%2Fshop%2Forderinquiry.php";} //비회원배송조회
+function info(){location.href="/bbs/register.php";} //개인정보취급방침
+function guide(){location.href="/community/guidance.php";} //이용안내
+function find(){location.href="javascript:win_password_lost();";} //아이디/비밀번호찾기
+function revision(){location.href="/bbs/member_confirm.php?url=register_form.php";} //회원정보수정
+//로그인페이지항시추가
+function guide2(){location.href="/pages.php?p=100_7_1_1";} //이용약관
+function info2(){location.href="/pages.php?p=100_8_1_1";} //개인정보취급방침
+function it9(){window.open("http://it9.co.kr/bbs/board.php?bo_table=portfolio");} //아이티나인
+function cube(){window.open("http://jejucube.com/bbs/board.php?bo_table=3_1_1_1");} //큐브
+function jlink(){window.open("http://j-link.co.kr/bbs/board.php?bo_table=2_1_1_1&sca=%EA%B8%B0%EB%B3%B8%ED%98%95");} //제이링크
+function roomnet02(){window.open("http://jejuroom.net/bbs/login.php?url=%2Fadm%2Findex.php%3F");} //룸넷
+function bookmark() {
+ 
+ url = g4_url; //즐겨찾기에 추가할 곳의 url
+ title="사이트명"//사이트명
+ // Internet Explorer
+ if(document.all)
+ {
+  window.external.AddFavorite(url, title);
+ }
+ // Google Chrome
+ else if(window.chrome){
+  alert("이 브라우저는 Ctrl+D 키를 눌러서 \n즐겨찾기추가를 하셔야 합니다 ^^;");
+ }
+ // Firefox
+ else if (window.sidebar) // firefox
+ {
+  window.sidebar.addPanel(title, url, "");
+ }
+ // Opera
+ else if(window.opera && window.print)
+ { // opera
+  var elem = document.createElement('a');
+  elem.setAttribute('href',url);
+  elem.setAttribute('title',title);
+  elem.setAttribute('rel','sidebar');
+  elem.click();
+ }
+}
+
+function menulink(link_go) {
+	switch ( link_go ) {
+
+		//햇살농수산
+		case 'menu01-1' : //햇살농수산을 소개합니다.
+		location.href="/pages.php?p=1_1_1_1"; break;
+
+
+		//햇살농산물
+		case 'menu02' ://햇살농산물
+		location.href="/shop/list.php?ca_id=10"; break;
+		case 'menu02-1' ://한라봉
+		location.href="/shop/list.php?ca_id=1010"; break;
+		case 'menu02-2' ://레드향
+		location.href="/shop/list.php?ca_id=1020"; break;
+		case 'menu02-3' ://천혜향
+		location.href="/shop/list.php?ca_id=1030"; break;
+		case 'menu02-4' ://노지감귤
+		location.href="/shop/list.php?ca_id=1040"; break;
+		case 'menu02-5' ://키위
+		location.href="/shop/list.php?ca_id=1050"; break;
+
+
+		//햇살수산물
+		case 'menu03' ://햇살수산물
+		location.href="/shop/list.php?ca_id=20"; break;
+		case 'menu03-1' ://옥돔
+		location.href="/shop/list.php?ca_id=2010"; break;
+		case 'menu03-2' ://고등어
+		location.href="/shop/list.php?ca_id=2020"; break;
+		case 'menu03-3' ://갈치
+		location.href="/shop/list.php?ca_id=2030"; break;
+
+
+		//고객센터
+		case 'menu04-1' : //Q&A
+		location.href="/bbs/board.php?bo_table=4_1_1_1"; break;
+		case 'menu04-2' : //구매후기
+		location.href="/bbs/board.php?bo_table=4_2_1_1"; break;
+		case 'menu04-3' : //이벤트
+		location.href="/bbs/board.php?bo_table=4_3_1_1"; break;
+		
+
+		//이용약관
+		case 'menu07-1' : //이용약관
+		location.href="/pages.php?p=7_1_1_1"; break;
+		case 'menu07-2' : //개인정보취급방침
+		location.href="/pages.php?p=7_2_1_1"; break;	
+		
+		}
+}
+

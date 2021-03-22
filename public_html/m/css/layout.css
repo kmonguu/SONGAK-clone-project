@@ -1,0 +1,7 @@
+@charset "UTF-8";
+#wrap {width:640px; height:auto; margin:0 auto; position:relative; overflow:hidden}
+#wrap header { width:640px; height:0; }
+#wrap section { height:auto; margin:0 auto; }
+#wrap section.sub { width:640px;}
+#wrap nav { height:68px;margin:0}
+#wrap footer { height:auto; margin:0 auto; background:url('/m/images/bottom/bottom_bg.jpg') no-repeat center top; text-align:center; margin-bottom:70px;}

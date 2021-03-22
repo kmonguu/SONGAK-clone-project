@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+    <sqlMap namespace="Board">
+        
+        <select id="list" parameterClass="array">
+            SELECT
+            <isEqual property="is_count" compareValue="Y">
+                count(*) as cnt
+            </isEqual>
+            <isNotEqual property="is_count" compareValue="Y">
+                *
+            </isNotEqual>
+            FROM
+                  g4_write_$bo_table$
+            WHERE
+                     wr_is_comment != 1
+                     <isNotEmpty property="sfl">
+                         <isNotEmpty property="stx"  prepend="AND">
+                                $sfl$ like '%$stx$%'
+                         </isNotEmpty>
+                      </isNotEmpty>
+                      $where_query$
+            <isNotEqual property="is_count" compareValue="Y">
+            <isNotEmpty property="sst">
+            ORDER BY
+                $sst$ $sod$ 
+                $order_query$
+            </isNotEmpty>
+            Limit
+                $from_record$, $rows$
+            </isNotEqual>
+        </select>
+        
+        <select id="get_board" parameterClass="array">
+            SELECT
+                  *
+            FROM
+                  g4_board
+            WHERE
+                  bo_table = #bo_table#
+        </select>
+        
+        <insert id="insert">
+            INSERT INTO
+                g4_write_$bo_table$
+            SET    
+                wr_num = #wr_num#,
+                wr_reply = #wr_reply#,
+                wr_comment = 0,
+                ca_name = #ca_name#,
+                wr_option = #wr_option#,
+                wr_subject = #wr_subject#,
+                wr_content = #wr_content#,
+                wr_link1 = #wr_link1#,
+                wr_link2 = #wr_link2#,
+                wr_link1_hit = 0,
+                wr_link2_hit = 0,
+                wr_trackback = #wr_trackback#,
+                wr_hit = 0,
+                wr_good = 0,
+                wr_nogood = 0,
+                mb_id = #mb_id#,
+                wr_password = #wr_password#,
+                wr_name = #wr_name#,
+                wr_email = #wr_email#,
+                wr_homepage = #wr_homepage#,
+                wr_datetime = now(),
+                wr_last = now(),
+                wr_ip = #wr_ip#,
+                wr_1 = #wr_1#,
+                wr_2 = #wr_2#,
+                wr_3 = #wr_3#,
+                wr_4 = #wr_4#,
+                wr_5 = #wr_5#,
+                wr_6 = #wr_6#,
+                wr_7 = #wr_7#,
+                wr_8 = #wr_8#,
+                wr_9 = #wr_9#,
+                wr_10 = #wr_10#
+        </insert>
+        
+        
+        
+        <select id="get">
+            SELECT
+                *
+            FROM
+                g4_write_$bo_table$
+            WHERE
+                wr_id = #wr_id#
+        </select>
+        
+        
+        <select id="get_fromAnother" parameterClass="array">
+                SELECT
+                    *
+                FROM
+                    g4_write_$bo_table$
+                WHERE
+                    $field$ = #value#
+        </select>
+        
+        
+        
+        <select id="get_forSubject">
+            SELECT
+                *
+            FROM
+              g4_write_$bo_table$
+            WHERE
+              wr_subject = #wr_subject#
+        </select>
+        
+        
+        
+        <update id="update_field">
+                UPDATE
+                  g4_write_$bo_table$
+                SET
+                    $field$ = #value#
+                WHERE
+                    wr_id = #wr_id#
+        </update>
+        
+        
+
+        <update id="update_parent">
+                UPDATE 
+                    g4_write_$write_table$
+                SET 
+                    wr_parent = #wr_id#,
+                    wr_num = #wr_num#
+                WHERE 
+                    wr_id = #wr_id#
+        </update>
+
+        <insert id="update_new">
+                INSERT INTO 
+                    g4_board_new ( bo_table, wr_id, wr_parent, bn_datetime, mb_id ) 
+                    values 
+                        ( 
+                            #bo_table#, 
+                            #wr_id#,
+                            #wr_id#, 
+                            now(),
+                            #mb_id#
+                        )
+        </insert>
+
+        <update id="update_cnt">
+                UPDATE 
+                    g4_board
+                SET
+                    bo_count_write = bo_count_write + 1 
+                WHERE 
+                    bo_table = #bo_table#
+        </update>
+        
+        
+        <update id="delete_cnt">
+                UPDATE 
+                    g4_board
+                SET
+                    bo_count_write = bo_count_write - 1 
+                WHERE 
+                    bo_table = #bo_table#
+        </update>
+        
+
+            
+        <delete id="delete">
+                DELETE FROM g4_write_$bo_table$ WHERE wr_parent = #wr_id#
+        </delete>
+           
+        <delete id="delete_new">
+                DELETE FROM g4_board_new WHERE bo_table=#bo_table# AND wr_parent=#wr_id#
+        </delete>
+        
+        <update id="update_notice">
+                UPDATE g4_board SET bo_notice = #bo_notice# WHERE bo_table = #bo_table#
+        </update>
+        
+
+
+    </sqlMap>

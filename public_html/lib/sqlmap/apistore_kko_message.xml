@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+    <sqlMap namespace="APIStoreKKOMessage">
+        
+        
+         <select id="list">
+	            SELECT
+	            <isEqual property="is_count" compareValue="Y">
+	                count(*) as cnt
+	            </isEqual>
+	            <isNotEqual property="is_count" compareValue="Y">
+	                *
+	            </isNotEqual>
+	            FROM
+	                  api_kko_message
+	            WHERE
+	                     com_id = #com_id#
+	                     <isNotEmpty property="sfl">
+	                         <isNotEmpty property="stx"  prepend="AND">
+	                                $sfl$ like '%$stx$%'
+	                         </isNotEmpty>
+	                      </isNotEmpty>
+	                      $where_query$
+	            <isNotEqual property="is_count" compareValue="Y">
+	            <isNotEmpty property="sst">
+	            ORDER BY
+	                <isEqual property="sod" compareValue="asc">
+	                    if($sst$='' OR $sst$ is null, '힣힣힣힣힣힣', $sst$) $sod$ 
+	                </isEqual>  
+	                <isEqual property="sod" compareValue="desc">
+	                    $sst$ $sod$ 
+	                </isEqual>  
+	                $order_query$
+	            </isNotEmpty>
+	            Limit
+	                $from_record$, $rows$
+	            </isNotEqual>
+        </select>
+        
+        
+        <select id="get">
+            SELECT
+                *
+            FROM
+                api_kko_message
+            WHERE
+                no = #no#
+        </select> 
+        
+        
+        <insert id="insert">
+            INSERT INTO
+                api_kko_message
+            SET
+                com_id = #com_id#
+				, msg_send_type = #msg_send_type#
+                , msg_name = #msg_name#
+                , msg_content = #msg_content#
+                , msg_kko_template = #msg_kko_template#
+                , msg_kko_url = #msg_kko_url#
+                , msg_kko_btntxt = #msg_kko_btntxt#
+				, msg_kko_btntype_1 = #msg_kko_btntype_1#
+				, msg_kko_btntype_2 = #msg_kko_btntype_2#
+				, msg_kko_btntype_3 = #msg_kko_btntype_3#
+				, msg_kko_btntype_4 = #msg_kko_btntype_4#
+				, msg_kko_btntype_5 = #msg_kko_btntype_5#
+				, msg_kko_btnname_1 = #msg_kko_btnname_1#
+				, msg_kko_btnname_2 = #msg_kko_btnname_2#
+				, msg_kko_btnname_3 = #msg_kko_btnname_3#
+				, msg_kko_btnname_4 = #msg_kko_btnname_4#
+				, msg_kko_btnname_5 = #msg_kko_btnname_5#
+				, msg_kko_btnurl_m_1 = #msg_kko_btnurl_m_1#
+				, msg_kko_btnurl_m_2 = #msg_kko_btnurl_m_2#
+				, msg_kko_btnurl_m_3 = #msg_kko_btnurl_m_3#
+				, msg_kko_btnurl_m_4 = #msg_kko_btnurl_m_4#
+				, msg_kko_btnurl_m_5 = #msg_kko_btnurl_m_5#
+				, msg_kko_btnurl_p_1 = #msg_kko_btnurl_p_1#
+				, msg_kko_btnurl_p_2 = #msg_kko_btnurl_p_2#
+				, msg_kko_btnurl_p_3 = #msg_kko_btnurl_p_3#
+				, msg_kko_btnurl_p_4 = #msg_kko_btnurl_p_4#
+				, msg_kko_btnurl_p_5 = #msg_kko_btnurl_p_5#
+				, is_use = #is_use#
+                , reg_date = now()
+                , reg_id = #member_id#
+                , reg_ip = #ip#
+        </insert>
+        
+        <update id="update">
+                UPDATE api_kko_message 
+                SET
+					msg_send_type = #msg_send_type#
+                    , msg_name = #msg_name#
+                    , msg_content = #msg_content#
+                    , msg_kko_template = #msg_kko_template#
+                    , msg_kko_url = #msg_kko_url#
+                    , msg_kko_btntxt = #msg_kko_btntxt#
+					, msg_kko_btntype_1 = #msg_kko_btntype_1#
+					, msg_kko_btntype_2 = #msg_kko_btntype_2#
+					, msg_kko_btntype_3 = #msg_kko_btntype_3#
+					, msg_kko_btntype_4 = #msg_kko_btntype_4#
+					, msg_kko_btntype_5 = #msg_kko_btntype_5#
+					, msg_kko_btnname_1 = #msg_kko_btnname_1#
+					, msg_kko_btnname_2 = #msg_kko_btnname_2#
+					, msg_kko_btnname_3 = #msg_kko_btnname_3#
+					, msg_kko_btnname_4 = #msg_kko_btnname_4#
+					, msg_kko_btnname_5 = #msg_kko_btnname_5#
+					, msg_kko_btnurl_m_1 = #msg_kko_btnurl_m_1#
+					, msg_kko_btnurl_m_2 = #msg_kko_btnurl_m_2#
+					, msg_kko_btnurl_m_3 = #msg_kko_btnurl_m_3#
+					, msg_kko_btnurl_m_4 = #msg_kko_btnurl_m_4#
+					, msg_kko_btnurl_m_5 = #msg_kko_btnurl_m_5#
+					, msg_kko_btnurl_p_1 = #msg_kko_btnurl_p_1#
+					, msg_kko_btnurl_p_2 = #msg_kko_btnurl_p_2#
+					, msg_kko_btnurl_p_3 = #msg_kko_btnurl_p_3#
+					, msg_kko_btnurl_p_4 = #msg_kko_btnurl_p_4#
+					, msg_kko_btnurl_p_5 = #msg_kko_btnurl_p_5#
+					, is_use = #is_use#
+                    , mod_date = now()
+                    , mod_id = #member_id#
+                    , mod_ip = #ip#
+                 WHERE
+                    no = #no#
+        </update>
+        
+        
+         <delete id="delete">
+                DELETE FROM api_kko_message WHERE no = #no#
+         </delete>
+           
+         <delete id="delete_com">
+                DELETE FROM api_kko_message WHERE com_id = #com_id#
+         </delete>  
+               
+
+
+    </sqlMap>

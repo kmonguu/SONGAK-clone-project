@@ -1,0 +1,61 @@
+<?
+include_once("./_common.php");
+if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가 
+
+$protocol = "http://";
+if(isset($_SERVER['HTTPS'])){
+	$protocol = "https://";
+}
+if(isset($_GET["pcv"])) { set_session("ss_is_pc_view", $_GET["pcv"]);}
+$ss_is_pc_view = get_session("ss_is_pc_view");
+if(USE_MOBILE && USE_MOVE_MOBILE && !$ss_is_pc_view) { //config.php
+	if($_SERVER[QUERY_STRING]) $qry_str = "?{$_SERVER[QUERY_STRING]}";
+	$arr_browser = array ("iPhone","iPod","IEMobile","Mobile","lgtelecom","PPC","iphone","ipod","android","blackberry","windows ce","nokia","webos","opera mini","sonyericsson","opera mobi","iemobile");
+	for($indexi = 0 ; $indexi < count($arr_browser) ; $indexi++) {
+	if(stripos($_SERVER['HTTP_USER_AGENT'],$arr_browser[$indexi]) == true){
+		// 모바일 브라우저라면  모바일 URL로 이동
+		if ($_SERVER['HTTP_REFERER'] != "{$protocol}{$_SERVER['SERVER_NAME']}/m/" ) {
+			header("HTTP/1.1 301 Moved Permanently");
+			header("Location: {$protocol}{$_SERVER['SERVER_NAME']}/m{$qry_str}");
+			exit;
+		}
+	}
+	}
+}
+header("HTTP/1.1 301 Moved Permanently");
+header("Location: {$protocol}{$_SERVER['SERVER_NAME']}/index.php{$qry_str}");
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<meta	http-equiv="content-type"	content="text/html; charset=utf-8" />
+	<meta	http-equiv="pragma"			content="no-cache" />
+	<meta	http-equiv="cache-control"	content="no-cache" />
+	<meta 	http-equiv="imagetoolbar"	content="no" />
+	<script type="text/javascript" src="<?=$g4['path']?>/res/link.js.php"></script>
+
+	<title><?=$config[cf_title]?></title>
+
+	<? /* **************************************************************************************************** */?>
+	<?if($config[cf_naver_verification]){?><meta name="naver-site-verification" content="<?=$config[cf_naver_verification]?>"/><?}?>
+	<meta name="description" content="<?=$config[cf_description]?>">
+	<meta name="keyword" content="<?=$config[cf_keyword]?>">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="<?=$config[cf_title]?>">
+	<meta property="og:url" content="http://<?=$_SERVER['HTTP_HOST']?>">
+	<meta property="og:description" content="<?=$config[cf_description]?>">
+	<meta property="og:image" content="/m/images/kakao_img.jpg">
+	<link rel="canonical" href="http://<?=$_SERVER['HTTP_HOST']?>">
+	<? /* **************************************************************************************************** */?>
+
+	<script type="text/javascript">
+		window.onLoad = function(){
+			document.title = site_name;
+		}
+	</script>
+
+ </head>
+
+
+</html>

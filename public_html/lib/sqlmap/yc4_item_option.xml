@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+    <sqlMap namespace="Yc4ItemOption">
+            
+            
+		<select id="list" parameterClass="array">
+			SELECT
+				<isEqual property="is_count" compareValue="Y">
+				count(*) as cnt
+				</isEqual>
+				<isNotEqual property="is_count" compareValue="Y">
+				*
+				</isNotEqual>
+			FROM
+				yc4_item_option
+			WHERE
+				 it_id = #it_id#
+				 <isNotEmpty property="sfl">
+					 <isNotEmpty property="stx"  prepend="AND">
+							$sfl$ like '%$stx$%'
+					 </isNotEmpty>
+				  </isNotEmpty>
+				  $where_query$
+			<isNotEqual property="is_count" compareValue="Y">
+				<isNotEmpty property="sst">
+					ORDER BY
+					$sst$ $sod$ 
+					$order_query$
+				</isNotEmpty>
+					Limit
+					$from_record$, $rows$
+			</isNotEqual>
+		</select>
+        
+
+		<select id="get" parameterClass="array">
+            SELECT
+                  *
+            FROM
+                  yc4_item_option
+            WHERE
+                  no = #no#
+        </select>
+
+
+		<insert id="insert">
+            INSERT INTO
+                yc4_item_option
+            SET    
+                it_id = #it_id#
+				, io_type1 = #io_type1#
+				, io_type2 = #io_type2#
+				, io_type3 = #io_type3#
+				, io_amt = #io_amt#
+				, io_point = #io_point#
+				, io_qty = #io_qty#
+				, io_qty2 = #io_qty2#
+				, io_use = #io_use#
+				, reg_date = now()
+        </insert>
+
+
+		
+		<update id="update">
+			UPDATE 
+				yc4_item_option
+			SET
+				io_amt = #io_amt#
+				, io_point = #io_point#
+				, io_qty = #io_qty#
+				, io_qty2 = #io_qty2#
+				, io_use = #io_use#
+			WHERE
+				it_id = #it_id#
+				AND io_type1 = #io_type1#
+				AND io_type2 = #io_type2#
+				AND io_type3 = #io_type3#
+		</update>
+
+
+		<update id="update_no">
+			UPDATE 
+				yc4_item_option
+			SET
+				io_amt = #io_amt#
+				, io_point = #io_point#
+				, io_qty = #io_qty#
+				, io_qty2 = #io_qty2#
+				, io_use = #io_use#
+			WHERE
+				no = #no#
+		</update>
+
+
+
+
+		<delete id="delete">
+			DELETE	FROM yc4_item_option WHERE no = #no#
+		</delete>
+
+		<delete id="delete_item">
+			DELETE	FROM yc4_item_option WHERE it_id = #it_id#
+		</delete>
+
+
+		
+		<select id="get_option" parameterClass="array">
+            SELECT
+                  *
+            FROM
+                  yc4_item_option
+            WHERE
+				  it_id = #it_id#
+				  AND	io_type1 = #io_type1#
+				  AND io_type2 = #io_type2#
+				  AND io_type3 = #io_type3#
+        </select>
+
+		<select id="get_options_d2">
+			SELECT
+				*
+			FROM
+				yc4_item_option
+			WHERE
+				it_id = #it_id#
+				AND
+					io_type1 = #io_type1#
+				AND
+					io_type2 != ''
+			ORDER BY 
+				no ASC
+		</select>
+
+		<select id="get_options_d3">
+			SELECT
+				*
+			FROM
+				yc4_item_option
+			WHERE
+				it_id = #it_id#
+				AND
+					io_type1 = #io_type1#
+				AND
+					io_type2 = #io_type2#
+				AND
+					io_type3 != ''
+			ORDER BY 
+				no ASC
+		</select>
+	
+	
+		
+		<select id="opt1_list">
+			SELECT
+				io_type1 as type
+			FROM
+				yc4_item_option
+			WHERE
+				it_id = #it_id#
+				AND
+					io_type1 != ''
+				AND
+					io_use = 1
+			GROUP BY 
+				io_type1
+			ORDER BY 
+				io_type1 ASC
+		</select>
+
+		<select id="opt2_list">
+			SELECT
+				io_type2 as type
+			FROM
+				yc4_item_option
+			WHERE
+				it_id = #it_id#
+				AND
+					io_type2 != ''
+				AND
+					io_use = 1
+			GROUP BY 
+				io_type2
+			ORDER BY 
+				io_type2 ASC
+		</select>
+
+		<select id="opt3_list">
+			SELECT
+				io_type3 as type
+			FROM
+				yc4_item_option
+			WHERE
+				it_id = #it_id#
+				AND
+					io_type3 != ''
+				AND
+					io_use = 1
+			GROUP BY 
+				io_type3
+			ORDER BY 
+				io_type3 ASC
+		</select>
+
+
+
+
+		<!-- 주문대기중 옵션 상품 갯수 (재고에서 빼지 않은) -->
+		<select id="get_stock_qty">
+				SELECT
+					sum(ct_qty) cnt
+				FROM
+					yc4_cart
+				WHERE
+					it_id = #it_id#
+					AND ct_stock_use = 0
+					AND
+						(ct_status = '주문' OR ct_status ='준비')
+					AND
+						it_option1 = #it_option1#
+					AND
+						it_option2 = #it_option2#
+					AND
+						it_option3 = #it_option3#
+			</select>
+
+
+			<!-- 장바구니 수량 -->
+			<select id="get_mycart_qty">
+				SELECT
+					sum(ct_qty) cnt
+				FROM
+					yc4_cart
+				WHERE
+					on_uid = #on_uid#
+					AND
+						ct_status = '쇼핑'
+					AND	
+						it_option1 = #it_option1#
+					AND
+						it_option2 = #it_option2#
+					AND
+						it_option3 = #it_option3#
+					<isNotEmpty property="ct_id">
+						AND
+							ct_id != #ct_id#
+					</isNotEmpty>
+			</select>
+
+
+			<!-- 재고 반영 -->
+			<update id="set_qty">
+				UPDATE
+					yc4_item_option
+				SET
+					io_qty = io_qty + ($qty$)
+				WHERE
+					it_id = #it_id#
+					AND
+						io_type1 = #io_type1#
+					AND
+						io_type2 = #io_type2#
+					AND
+						io_type3 = #io_type3#
+			</update>
+
+
+            
+    </sqlMap>

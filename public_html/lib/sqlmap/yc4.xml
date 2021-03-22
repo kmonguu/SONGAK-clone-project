@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+    <sqlMap namespace="Yc4">
+            
+            
+            
+        
+            <!-- 주문번호에 상품 수 -->
+            <select id="get_od_it_cnt">
+                    SELECT
+                         count(*)
+                    FROM
+                         yc4_cart
+                    WHERE
+                        on_uid = #on_uid#
+            </select>
+            
+            <!-- 주문정보 -->
+            <select id="get_order">
+                    SELECT
+                         *
+                    FROM
+                         yc4_order
+                    WHERE
+                        od_id = #od_id#
+            </select>
+            
+            <!-- 주문정보 -->
+            <select id="get_order_byOnUid">
+                    SELECT
+                         *
+                    FROM
+                         yc4_order
+                    WHERE
+                        on_uid = #on_uid#
+            </select>
+            
+            <!--  주문 추가 -->
+            <insert id="insert_order">
+                    INSERT INTO yc4_order SET
+                        od_id = #od_id#
+                        ,on_uid = #on_uid#
+						,mb_id = #mb_id#
+						,od_pwd = password(#od_pwd#)
+						,od_name = #od_name#
+						,od_in_date = #od_in_date#
+						,od_email = #od_email#
+						,od_tel = #od_tel#
+						,od_hp = #od_hp#
+						,od_zip1 = #od_zip1#
+						,od_zip2 = #od_zip2#
+						,od_addr1 = #od_addr1#
+						,od_addr2 = #od_addr2#
+						,od_deposit_name = #od_deposit_name#
+						,od_b_name = #od_b_name#
+						,od_b_tel = #od_b_tel#
+						,od_b_hp = #od_b_hp#
+						,od_b_zip1 = #od_b_zip1#
+						,od_b_zip2 = #od_b_zip2#
+						,od_b_addr1 = #od_b_addr1#
+						,od_b_addr2 = #od_b_addr2#
+						,od_memo = #od_memo#
+						,od_send_cost = #od_send_cost#
+						,od_temp_bank = #od_temp_bank#
+						,od_temp_card = #od_temp_card#
+						,od_temp_point = #od_temp_point#
+						,od_receipt_bank = #od_receipt_bank#
+						,od_receipt_card = #od_receipt_card#
+						,od_receipt_point = #od_receipt_point#
+						,od_bank_account = #od_bank_account#
+						,od_bank_time = #od_bank_time#
+						,od_card_time = #od_card_time#
+						,od_cancel_card = #od_cancel_card#
+						,od_dc_amount = #od_dc_amount#
+						,od_refund_amount = #od_refund_amount#
+						,od_shop_memo = #od_shop_memo#
+						,dl_id = #dl_id#
+						,od_invoice = #od_invoice#
+						,od_invoice_time = #od_invoice_time#
+						,od_hope_date = #od_hope_date#
+						,od_time = now()
+						,od_ip = #od_ip#
+						,od_settle_case = #od_settle_case#
+						,od_escrow1 = #od_escrow1#
+						,od_escrow2 = #od_escrow2#
+						,od_escrow3 = #od_escrow3#
+						,od_cash_no = #od_cash_no#
+						,od_cash_receipt_no = #od_cash_receipt_no#
+						,od_cash_app_time = #od_cash_app_time#
+						,od_cash_reg_stat = #od_cash_reg_stat#
+						,od_cash_reg_desc = #od_cash_reg_desc#
+						,od_cash_tr_code = #od_cash_tr_code#
+						,od_cash_id_info = #od_cash_id_info#
+						,od_cash = #od_cash#
+						,od_cash_allthegate_gubun_cd = #od_cash_allthegate_gubun_cd#
+						,od_cash_allthegate_confirm_no = #od_cash_allthegate_confirm_no#
+						,od_cash_allthegate_adm_no = #od_cash_allthegate_adm_no#
+						,od_cash_tgcorp_mxissueno = #od_cash_tgcorp_mxissueno#
+						,od_cash_inicis_noappl = #od_cash_inicis_noappl#
+						,od_cash_inicis_pgauthdate = #od_cash_inicis_pgauthdate#
+						,od_cash_inicis_pgauthtime = #od_cash_inicis_pgauthtime#
+						,od_cash_inicis_tid = #od_cash_inicis_tid#
+						,od_cash_inicis_ruseopt = #od_cash_inicis_ruseopt#
+						,od_cash_receiptnumber = #od_cash_receiptnumber#
+						,od_cash_kspay_revatransactionno = #od_cash_kspay_revatransactionno#
+            </insert>
+
+            <delete id="delete_order">
+                DELETE FROM yc4_order WHERE on_uid = #on_uid#
+            </delete>            
+            
+            
+             <update id="update_order_field">
+                    UPDATE yc4_order SET
+                        $field$ = #value# 
+                     WHERE
+                        od_id = #od_id#
+             </update>
+             
+             <update id="update_order_field_by_uid">
+                    UPDATE yc4_order SET
+                        $field$ = #value# 
+                     WHERE
+                        on_uid = #on_uid#
+             </update>
+             
+             
+             
+            
+            <!-- 상품정보 -->
+            <select id="get_item">
+                   SELECT
+                        *
+                    FROM
+                        yc4_item
+                    WHERE
+                        it_id = #it_id#
+            </select>
+            
+            
+            <update id="update_item_field">
+                    UPDATE
+                        yc4_item
+                    SET
+                        $field$ = #value#
+                    WHERE
+                        it_id = #it_id#
+            </update>
+            
+            
+            
+            <!-- 상품 옵션 리스트 -->
+            <select id="get_it_options">
+                    SELECT
+                        *
+                    FROM
+                        yc4_item_options
+                    WHERE
+                        it_id = #it_id#
+                    ORDER BY
+                        op_id asc            
+            </select>
+            
+            <!-- 상품옵션 정보 -->
+            <select id="get_it_option_info">
+                    SELECT
+                        *
+                     FROM
+                        yc4_item_options
+                     WHERE
+                        op_id = #op_id#
+            </select>
+            
+            <!-- 상품 옵션 등록 -->
+            <insert id="insert_it_options">
+                    INSERT INTO yc4_item_options
+                    SET
+                        it_id = #it_id#,
+                        op_name = #op_name#,
+                        reg_date = now()
+            </insert>
+            
+            <!-- 상품 옵션 업데이트-->
+            <update id="update_it_options">
+                    UPDATE yc4_item_options
+                    SET
+                        op_name = #op_name#,
+                        mod_date = now()
+                    WHERE
+                        op_id = #op_id#
+            </update>
+            
+            <!-- 상품 옵션 삭제 -->
+            <delete id="delete_it_options">
+                    DELETE FROM  yc4_item_options WHERE op_id = #op_id#
+            </delete>
+            
+            <!-- 상품 옵션 항목 리스트 -->
+            <select id="get_it_option_list">
+                    SELECT
+                        *
+                    FROM
+                        yc4_item_option_list
+                    WHERE
+                        op_id = #op_id#
+                     ORDER BY
+                        opl_no asc
+            </select>
+            
+            <select id="get_it_option_list_info">
+                    SELECT * FROM yc4_item_option_list WHERE opl_no = #opl_no#
+            </select>
+            
+            
+            <!--  상품 옵션 항목 등록 -->
+            <insert id="insert_it_option_list">
+                    INSERT INTO yc4_item_option_list
+                    SET
+                        op_id = #op_id#,
+                        opl_name = #opl_name#,
+                        opl_amt = #opl_amt#,
+                        it_id = #it_id#,
+                        reg_dt = now()
+            </insert>
+            
+            <!-- 상품 옵션 항목 업뎃 -->
+            <update id="update_it_option_list">
+                    UPDATE yc4_item_option_list
+                    SET
+                        opl_name = #opl_name#,
+                        opl_amt = #opl_amt#,
+                        mod_dt = now()
+                     WHERE
+                        opl_no = #opl_no#
+            </update>
+            
+            <!--  상품 옵션 항목 삭제 -->
+            <delete id="delete_it_option_list">
+                    DELETE FROM yc4_item_option_list
+                    WHERE opl_no = #opl_no#
+            </delete>
+            
+            <!--  상품 옵션 항목 전부 삭제 -->
+            <delete id="delete_it_option_list_all">
+                    DELETE FROM yc4_item_option_list
+                    WHERE op_id = #op_id#
+            </delete>
+            
+            <!--  상품 삭제에 따른  옵션 항목 전부 삭제 -->
+            <delete id="delete_it_option_list_item">
+                    DELETE FROM yc4_item_option_list
+                    WHERE it_id = #it_id#
+            </delete>
+            
+            
+            
+            
+            <!-- 카테고리 정보 -->
+            <select id="get_category">
+                   SELECT
+                        *
+                   FROM
+                        yc4_category
+                    WHERE
+                        ca_id = #ca_id#
+            </select>
+            
+            <!-- 카테고리 리스트 1 Depth -->
+            <select id="get_category_d1">
+                    SELECT
+                        *
+                    FROM
+                        yc4_category
+                    WHERE
+                        length(ca_id) = 2
+                    ORDER BY
+                        ca_id asc
+            </select>
+            
+            
+             <!-- 카테고리 리스트 2 Depth -->
+            <select id="get_category_d2">
+                    SELECT
+                        *
+                    FROM
+                        yc4_category
+                    WHERE
+                        length(ca_id) = 4 AND 
+                        ca_id like '$ca_id$%' AND
+                        ca_use = 1
+                    ORDER BY
+                        ca_id asc
+            </select>
+            
+             <!-- 카테고리 리스트 3 Depth -->
+            <select id="get_category_d3">
+                    SELECT
+                        *
+                    FROM
+                        yc4_category
+                    WHERE
+                        length(ca_id) = 6 AND 
+                        ca_id like '$ca_id$%' AND
+                        ca_use = 1
+                    ORDER BY
+                        ca_id asc
+            </select>
+            
+            
+             
+             
+             <!-- 배송회사 리스트 -->
+             <select id="get_dl_list">
+                    SELECT
+                          *
+                     FROM   
+                            yc4_delivery
+                     ORDER BY
+                            dl_order desc, dl_id desc
+             </select>
+             
+             
+            
+            
+             <!--장바구니 리스트 -->
+             <select id="list_cart">
+                   SELECT
+                        a.*
+                        , b.it_name
+                   FROM
+                        yc4_cart a LEFT JOIN yc4_item b ON a.it_id = b.it_id
+                   WHERE
+                        on_uid = #on_uid#
+             </select>
+
+			  <select id="get_cart">
+					SELECT
+						a.*
+                        , b.it_name
+					FROM
+						yc4_cart a LEFT JOIN yc4_item b ON a.it_id = b.it_id
+					WHERE
+						ct_id = #ct_id#
+			 </select>
+             
+             <update id="update_cart_field">
+                    UPDATE yc4_cart SET
+                        $field$ = #value# 
+                     WHERE
+                        ct_id = #ct_id#
+             </update>
+             
+             
+            <insert id="insert_cart">
+                    INSERT INTO yc4_cart SET
+                        on_uid = #on_uid#
+                        , it_id = #it_id#
+                        , it_opt1 = #it_opt1#
+                        , it_opt2 = #it_opt2#
+                        , it_opt3 = #it_opt3#
+                        , it_opt4 = #it_opt4#
+                        , it_opt5 = #it_opt5#
+                        , it_opt6 = #it_opt6#
+                        , ct_status = #ct_status#
+                        , ct_history = #ct_history#
+                        , ct_amount = #ct_amount#
+                        , ct_point = #ct_point#
+                        , ct_point_use = #ct_point_use#
+                        , ct_stock_use = #ct_stock_use#
+                        , ct_qty = #ct_qty#
+                        , ct_time = now()
+                        , ct_ip = #ct_ip#
+                        , ct_send_cost = #ct_send_cost#
+                        , ct_direct = #ct_direct#
+                        , ct_card_commission = #ct_card_commission#
+                        , ct_lguplus_commission = #ct_lguplus_commission#
+            </insert>
+            
+            <delete id="delete_cart">
+                    DELETE FROM yc4_cart WHERE on_uid = #on_uid#
+            </delete>
+            
+           
+            
+            
+            <!-- 회원의 소멸될 포인트 조회 -->
+            <select id="get_exp_point">
+                SELECT
+				    sum(po_point) as exp_point
+				FROM
+				    g4_point
+				WHERE
+				    mb_id = #mb_id#
+				    AND is_exp = 'N'
+				    AND po_rel_table != '@expiration'
+				    AND STR_TO_DATE(po_datetime, '%Y-%m-%d %H:%i:%s') &lt;= date_add(now(), interval -$point_limit$ $point_limit_type$)
+            </select>
+            
+            <!-- 포인트 소멸일 후에 사용된 포인트 총 합 -->
+            <select id="get_use_point">
+                SELECT
+                   ifnull(sum(po_point * -1),0) as use_point
+                FROM
+                    g4_point
+                WHERE
+                    mb_id = #mb_id#
+                    AND po_point &lt; 0
+                    AND is_exp = 'N'
+                    AND po_rel_table != '@expiration'
+                    AND STR_TO_DATE(po_datetime, '%Y-%m-%d %H:%i:%s') &gt; date_add(now(), interval -$point_limit$ $point_limit_type$)
+            </select>
+            
+            <!-- 소멸포인트 표시 -->
+            <update id="set_exp_point">
+                UPDATE
+                    g4_point
+                SET
+                    is_exp = 'Y'
+                WHERE
+                    mb_id = #mb_id#
+                    AND STR_TO_DATE(po_datetime, '%Y-%m-%d %H:%i:%s') &lt;= date_add(now(), interval -$point_limit$ $point_limit_type$)
+            </update>
+               
+               
+               
+             <!-- 회원의 소멸예정 포인트 조회 (n일전) -->
+            <select id="get_exp_point_alert">
+                SELECT
+                    sum(po_point) as exp_point
+                FROM
+                    g4_point
+                WHERE
+                    mb_id = #mb_id#
+                    AND is_exp = 'N'
+                    AND po_rel_table != '@expiration'
+                    AND STR_TO_DATE(po_datetime, '%Y-%m-%d %H:%i:%s') &lt;= date_add( date_add(now(), interval -$point_limit$ $point_limit_type$), interval +$cday$ DAY )  
+            </select>
+            
+            <!-- 포인트 소멸일 후에 사용된 포인트 (n일전) -->
+            <select id="get_use_point_alert">
+                SELECT
+                   ifnull(sum(po_point * -1),0) as use_point
+                FROM
+                    g4_point
+                WHERE
+                    mb_id = #mb_id#
+                    AND po_point &lt; 0
+                    AND is_exp = 'N'
+                    AND po_rel_table != '@expiration'
+                    AND STR_TO_DATE(po_datetime, '%Y-%m-%d %H:%i:%s') &gt; date_add( date_add(now(), interval -$point_limit$ $point_limit_type$), interval +$cday$ DAY )
+            </select>
+            
+            
+            
+             <!-- 회원의 소멸예정 포인트 조회 (당일조회용) -->
+            <select id="get_exp_point_today_alert">
+                SELECT
+                    sum(po_point) as exp_point
+                FROM
+                    g4_point
+                WHERE
+                    mb_id = #mb_id#
+                    AND is_exp = 'N'
+                    AND po_rel_table != '@expiration'
+                    AND concat(STR_TO_DATE(po_datetime, '%Y-%m-%d'), ' 00:00:00') &lt;= date_add(now(), interval -$point_limit$ $point_limit_type$)
+            </select>
+            
+            <!-- 포인트 소멸일 후에 사용된 포인트 (당일조회용) -->
+            <select id="get_use_point_today_alert">
+                SELECT
+                   ifnull(sum(po_point * -1),0) as use_point
+                FROM
+                    g4_point
+                WHERE
+                    mb_id = #mb_id#
+                    AND po_point &lt; 0
+                    AND is_exp = 'N'
+                    AND po_rel_table != '@expiration'
+                    AND concat(STR_TO_DATE(po_datetime, '%Y-%m-%d'), ' 00:00:00') &gt; date_add(now(), interval -$point_limit$ $point_limit_type$)
+            </select>
+            
+            
+            
+            
+            
+    </sqlMap>

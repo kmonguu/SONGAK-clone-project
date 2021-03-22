@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+
+    <!-- 날짜 관련 -->
+    <t value="{1}월 {2}일 {3}"  kor="{1} {2}일 {3}" eng="{1} {2}, {3}" chn="{1} {2}日 {3}" jpn="" />
+    <t value="{1}일"  kor="{1}일" eng="" chn="{1}日" jpn="" />
+    <t value="월요일"  kor="월요일" eng="Monday" chn="周一" jpn="" />
+    <t value="화요일"  kor="화요일" eng="Tuesday" chn="周二" jpn="" />
+    <t value="수요일"  kor="수요일" eng="Wednesday" chn="周三" jpn="" />
+    <t value="목요일"  kor="목요일" eng="Thursday" chn="周四" jpn="" />
+    <t value="금요일"  kor="금요일" eng="Friday" chn="周五" jpn="" />
+    <t value="토요일"  kor="토요일" eng="Saturday" chn="星期六" jpn="" />
+    <t value="일요일"  kor="일요일" eng="Sunday" chn="星期日" jpn="" />
+    <t value="월yoil"  kor="월" eng="Mon" chn="周一" jpn="" />
+    <t value="화"  kor="화" eng="Tue" chn="周二" jpn="" />
+    <t value="수"  kor="수" eng="Wed" chn="周三" jpn="" />
+    <t value="목"  kor="목" eng="Thu" chn="周四" jpn="" />
+    <t value="금"  kor="금" eng="Fri" chn="周五" jpn="" />
+    <t value="토"  kor="토" eng="Sat" chn="星期六" jpn="" />
+    <t value="일yoil"  kor="일" eng="Sun" chn="星期日" jpn="" />
+    <t value="년"  kor="년" eng="" chn="年" jpn="" />
+    <t value="월"  kor="월" eng="" chn="月" jpn="" />
+    <t value="일"  kor="일" eng="" chn="日" jpn="" />
+    <t value="1월"  kor="1월" eng="January" chn="1月" jpn="" />
+    <t value="2월"  kor="2월" eng="February" chn="2月" jpn="" />
+    <t value="3월"  kor="3월" eng="March" chn="3月" jpn="" />
+    <t value="4월"  kor="4월" eng="April" chn="4月" jpn="" />
+    <t value="5월"  kor="5월" eng="May" chn="5月" jpn="" />
+    <t value="6월"  kor="6월" eng="June" chn="6月" jpn="" />
+    <t value="7월"  kor="7월" eng="July" chn="7月" jpn="" />
+    <t value="8월"  kor="8월" eng="August" chn="8月" jpn="" />
+    <t value="9월"  kor="9월" eng="September" chn="9月" jpn="" />
+    <t value="10월"  kor="10월" eng="October" chn="10月" jpn="" />
+    <t value="11월"  kor="11월" eng="November" chn="11月" jpn="" />
+    <t value="12월"  kor="12월" eng="December" chn="12月" jpn="" />
+    
+    
+    <t value='분' kor='분' eng='' jpn='' chn='分钟' />
+    <t value='확인' kor='확인' eng='' jpn='' chn='确认' />
+    <t value='확 인' kor='확 인' eng='' jpn='' chn='确认' />
+    <t value='미완료' kor='미완료' eng='' jpn='' chn='未完成' />
+    <t value='추가' kor='추가' eng='' jpn='' chn='添加' />
+    <t value='추가하기' kor='추가하기' eng='' jpn='' chn=' &amp;nbsp; 添 加  &amp;nbsp;' />
+    <t value='추가등록' kor='추가등록' eng='' jpn='' chn=' &amp;nbsp; 添 加  &amp;nbsp;' />
+    <t value='삭제' kor='삭제' eng='' jpn='' chn='删除' />
+    <t value='위안' kor='위안' eng='' jpn='' chn='元' />
+    <t value='계약금/잔금' kor='계약금/잔금' eng='' jpn='' chn='合同金额/余额' />
+    <t value='단위' kor='단위' eng='' jpn='' chn='单位' />
+    <t value='만원' kor='만원' eng='' jpn='' chn='万（韩元）' />
+    <t value='건수' kor='건수' eng='' jpn='' chn='件数' />
+    <t value='개' kor='개' eng='' jpn='' chn='个' />
+    <t value='제목' kor='제목' eng='' jpn='' chn='标题' />
+    <t value='제 목' kor='제 목' eng='' jpn='' chn='标题' />
+    <t value='글쓴이' kor='글쓴이' eng='' jpn='' chn='作者' />
+    <t value='작성자' kor='작성자' eng='' jpn='' chn='作者' />
+    <t value='날짜' kor='날짜' eng='' jpn='' chn='日期' />
+    <t value='날 짜' kor='날 짜' eng='' jpn='' chn='日期' />
+    <t value='조회' kor='조회' eng='' jpn='' chn='查询' />
+    <t value='내용' kor='내용' eng='' jpn='' chn='内容' />
+    <t value='내 용' kor='내 용' eng='' jpn='' chn='内容' />
+    <t value='글쓴이' kor='글쓴이' eng='' jpn='' chn='作者' />
+    <t value='회원아이디' kor='회원아이디' eng='' jpn='' chn='会员帐号' />
+    <t value='아이디' kor='아이디' eng='' jpn='' chn='会员帐号' />
+    <t value='비밀번호' kor='비밀번호' eng='' jpn='' chn='密码' />
+    <t value='선택삭제' kor='선택삭제' eng='' jpn='' chn='删除选项' />
+    <t value='선택복사' kor='선택복사' eng='' jpn='' chn='复制选项' />
+    <t value='선택이동' kor='선택이동' eng='' jpn='' chn='移动选项' />
+    <t value='글쓰기' kor='글쓰기' eng='' jpn='' chn='写作' />
+    <t value='등록' kor='등록' eng='' jpn='' chn='注册' />
+    <t value='옵션' kor='옵션' eng='' jpn='' chn='选项' />
+    <t value='옵 션' kor='옵 션' eng='' jpn='' chn='选项' />
+    <t value='공지' kor='공지' eng='' jpn='' chn='通知' />
+    <t value='분류' kor='분류' eng='' jpn='' chn='分类' />
+    <t value='분 류' kor='분 류' eng='' jpn='' chn='分类' />
+    <t value='선택하세요' kor='선택하세요' eng='' jpn='' chn='请选项' />
+    <t value='링크' kor='링크' eng='' jpn='' chn='链接' />
+    <t value='복사' kor='복사' eng='' jpn='' chn='复制' />
+    <t value='이동' kor='이동' eng='' jpn='' chn='移动' />
+    <t value='답변' kor='답변' eng='' jpn='' chn='答复' />
+    <t value='달력보기' kor='달력보기' eng='' jpn='' chn='日历视图' />
+    <t value='유형' kor='유형' eng='' jpn='' chn='类型' />
+    <t value='분기별 휴가' kor='분기별 휴가' eng='' jpn='' chn='各季度假期' />
+    <t value='분기별휴가' kor='분기별휴가' eng='' jpn='' chn='各季度假期' />
+    <t value='특별휴가' kor='특별휴가' eng='' jpn='' chn='特殊休假' />
+    <t value='이름' kor='이름' eng='' jpn='' chn='名字' />
+    <t value='이 름' kor='이 름' eng='' jpn='' chn='名字' />
+    <t value='기간' kor='기간' eng='' jpn='' chn='日期' />
+    <t value='기 간' kor='기 간' eng='' jpn='' chn='日期' />
+    <t value='성명 / 직급' kor='성명 / 직급' eng='' jpn='' chn='姓名/级别' />
+    <t value='직급' kor='직급' eng='' jpn='' chn='级别' />
+    <t value='사용일' kor='사용일' eng='' jpn='' chn='使用天数' />
+    <t value='낭은일' kor='낭은일' eng='' jpn='' chn='剩余天数' />
+    <t value='병가' kor='병가' eng='' jpn='' chn='病假' />
+    <t value='무단결근' kor='무단결근' eng='' jpn='' chn='旷工' />
+    <t value='조퇴' kor='조퇴' eng='' jpn='' chn='早退' />
+    <t value='지각' kor='지각' eng='' jpn='' chn='迟到' />
+    <t value='공지사항' kor='공지사항' eng='' jpn='' chn='公告事项' />
+    <t value='공지/기타' kor='공지/기타' eng='' jpn='' chn='公告/其他' />
+    <t value='총 {1}명' kor='총 {1}명' eng='' jpn='' chn='总{1}名' />
+    <t value='부서' kor='부서' eng='' jpn='' chn='部门' />
+    <t value='직무' kor='직무' eng='' jpn='' chn='职务' />
+    <t value='최종접속' kor='최종접속' eng='' jpn='' chn='最终连接' />
+    <t value='상태' kor='상태' eng='' jpn='' chn='状态' />
+    <t value='임직원관리' kor='임직원관리' eng='' jpn='' chn='员工管理' />
+    <t value='임직원목록' kor='임직원목록' eng='' jpn='' chn='员工名录' />
+    <t value='직급관리' kor='직급관리' eng='' jpn='' chn='级别管理' />
+    <t value='권환관리' kor='권환관리' eng='' jpn='' chn='权限管理' />
+    <t value='코드관리' kor='코드관리' eng='' jpn='' chn='代码管理' />
+    <t value='직급별 권한 목록' kor='직급별 권한 목록' eng='' jpn='' chn='各级别的权限列表' />
+    <t value='대표' kor='대표' eng='' jpn='' chn='代表' />
+    <t value='이사' kor='이사' eng='' jpn='' chn='理事' />
+    <t value='부장' kor='부장' eng='' jpn='' chn='部长' />
+    <t value='팀장' kor='팀장' eng='' jpn='' chn='组长' />
+    <t value='실장' kor='실장' eng='' jpn='' chn='室长' />
+    <t value='과장' kor='과장' eng='' jpn='' chn='科长' />
+    <t value='대리' kor='대리' eng='' jpn='' chn='代理' />
+    <t value='주임' kor='주임' eng='' jpn='' chn='主任' />
+    <t value='사원' kor='사원' eng='' jpn='' chn='职员' />
+    <t value='총무' kor='총무' eng='' jpn='' chn='总务' />
+    <t value='직급목록' kor='직급목록' eng='' jpn='' chn='级别列表' />
+    <t value='직급코드정보' kor='직급코드정보' eng='' jpn='' chn='级别代码信息' />
+    <t value='새로입력' kor='새로입력' eng='' jpn='' chn='新输入' />
+    <t value='메뉴별 권한관리' kor='메뉴별 권한관리' eng='' jpn='' chn='各菜单管理权限' />
+    <t value='권한관리' kor='권한관리' eng='' jpn='' chn='各菜单管理权限' />
+    <t value='메뉴1' kor='메뉴1' eng='' jpn='' chn='菜单1' />
+    <t value='메뉴2' kor='메뉴2' eng='' jpn='' chn='菜单2' />
+    <t value='허용권한' kor='허용권한' eng='' jpn='' chn='所容许权限  ' />
+    <t value='차단 부서' kor='차단 부서' eng='' jpn='' chn='切断部门' />
+    <t value='차단 아이디' kor='차단 아이디' eng='' jpn='' chn='切断   ' />
+    <t value='허용 아이디' kor='허용 아이디' eng='' jpn='' chn='允许 ' />
+    <t value='접근차단 부서' kor='접근차단 부서' eng='' jpn='' chn='访问切断部门' />
+    <t value='현재 접근 차단된 부서' kor='현재 접근 차단된 부서' eng='' jpn='' chn='目前已切断访问的部门 ' />
+    <t value='부서목록' kor='부서목록' eng='' jpn='' chn='部门列表' />
+    <t value='접근허용' kor='접근허용' eng='' jpn='' chn='允许访问' />
+    <t value='현재 접근 허용된 ID' kor='현재 접근 허용된 ID' eng='' jpn='' chn='当前允许访问的ID' />
+    <t value='임직원 목록' kor='임직원 목록' eng='' jpn='' chn='员工名录' />
+    <t value='도메인등록대행사' kor='도메인등록대행사' eng='' jpn='' chn='域名注册代理商' />
+    <t value='직무' kor='직무' eng='' jpn='' chn='职务' />
+    <t value='호스팅업체' kor='호스팅업체' eng='' jpn='' chn='主机企业' />
+    <t value='업로드' kor='업로드' eng='' jpn='' chn='上传' />
+    <t value='Excel 업로드' kor='Excel 업로드' eng='' jpn='' chn='上传Excel' />
+    <t value='일괄수정' kor='일괄수정' eng='' jpn='' chn='批量修改' />
+    <t value='출력' kor='출력' eng='' jpn='' chn='输出' />
+    <t value='일자' kor='일자' eng='' jpn='' chn='日期 ' />
+    <t value='일 자' kor='일 자' eng='' jpn='' chn='日期 ' />
+    <t value='경로' kor='경로' eng='' jpn='' chn='路径 ' />
+    <t value='경 로' kor='경 로' eng='' jpn='' chn='路径 ' />
+    <t value='영업자' kor='영업자' eng='' jpn='' chn='运营者' />
+    <t value='견적' kor='견적' eng='' jpn='' chn='预算' />
+    <t value='IT9 견적' kor='IT9 견적' eng='' jpn='' chn='IT9 预算' />
+    <t value='큐브 견적' kor='큐브 견적' eng='' jpn='' chn='CUBE 预算' />
+    <t value='지원요청' kor='지원요청' eng='' jpn='' chn='请求援助' />
+    <t value='완료현황' kor='완료현황' eng='' jpn='' chn='完成情况' />
+    <t value='계약실패' kor='계약실패' eng='' jpn='' chn='合同失败' />
+    <t value='계약예정' kor='계약예정' eng='' jpn='' chn='合同预计' />
+    <t value='계약완료' kor='계약완료' eng='' jpn='' chn='合同完成' />
+    <t value='현수막' kor='현수막' eng='' jpn='' chn='条幅' />
+    <t value='인터넷' kor='인터넷' eng='' jpn='' chn='网络' />
+    <t value='지인소개' kor='지인소개' eng='' jpn='' chn='认识人介绍' />
+    <t value='신규영업' kor='신규영업' eng='' jpn='' chn='新规定营销' />
+    <t value='간판' kor='간판' eng='' jpn='' chn='招牌' />
+    <t value='제작의뢰' kor='제작의뢰' eng='' jpn='' chn='委托制作 ' />
+    <t value='방문' kor='방문' eng='' jpn='' chn='访问' />
+    <t value='검색신청' kor='검색신청' eng='' jpn='' chn='搜索申请' />
+    <t value='진행상황' kor='진행상황' eng='' jpn='' chn='进展情况' />
+    <t value='시작날짜' kor='시작날짜' eng='' jpn='' chn='开始日期' />
+    <t value='마지막날짜' kor='마지막날짜' eng='' jpn='' chn='最后日期' />
+    <t value='업체관리정보' kor='업체관리정보' eng='' jpn='' chn='企业管理信息 ' />
+    <t value='처리중' kor='처리중' eng='' jpn='' chn='处理中' />
+    <t value='포트폴리오관리' kor='포트폴리오관리' eng='' jpn='' chn='选辑管理 ' />
+    <t value='검수일' kor='검수일' eng='' jpn='' chn='验收日' />
+    <t value='책임자' kor='책임자' eng='' jpn='' chn='负责人' />
+    <t value='저장' kor='저장' eng='' jpn='' chn='保存' />
+    <t value='오늘 수정 횟수' kor='오늘 수정 횟수' eng='' jpn='' chn='今天的修改次数' />
+    <t value='이번달 수정 횟수' kor='이번달 수정 횟수' eng='' jpn='' chn='这个月的修改次数' />
+    <t value='총 수정 횟수' kor='총 수정 횟수' eng='' jpn='' chn='总修改次数' />
+    <t value='경로' kor='경로' eng='' jpn='' chn='路径' />
+    <t value='게시판' kor='게시판' eng='' jpn='' chn='公告栏 ' />
+    <t value='전화' kor='전화' eng='' jpn='' chn='电话' />
+    <t value='이메일' kor='이메일' eng='' jpn='' chn='电子邮件' />
+    <t value='방문' kor='방문' eng='' jpn='' chn='访问' />
+    <t value='자체' kor='자체' eng='' jpn='' chn='本身' />
+    <t value='1차수정건' kor='1차수정건' eng='' jpn='' chn='首次修改案' />
+    <t value='2차수정건' kor='2차수정건' eng='' jpn='' chn='第二次修改案 ' />
+    <t value='작업자' kor='작업자' eng='' jpn='' chn='工作人员' />
+    <t value='유료수정건' kor='유료수정건' eng='' jpn='' chn='收费修正案 ' />
+    <t value='수정내역 목록' kor='수정내역 목록' eng='' jpn='' chn='修改明细表  ' />
+    <t value='전체표시' kor='전체표시' eng='' jpn='' chn='整体标志' />
+    <t value='전체보기' kor='전체보기' eng='' jpn='' chn='整体标志' />
+    <t value='텐츠팀' kor='텐츠팀' eng='' jpn='' chn='？？组' />
+    <t value='촬영스케쥴관리' kor='촬영스케쥴관리' eng='' jpn='' chn='拍摄行程管理' />
+    <t value='촬영스케쥴' kor='촬영스케쥴' eng='' jpn='' chn='拍摄行程' />
+    <t value='촬영 스케쥴' kor='촬영 스케쥴' eng='' jpn='' chn='拍摄行程' />
+    <t value='촬영스케줄' kor='촬영스케줄' eng='' jpn='' chn='拍摄行程' />
+    <t value='촬영 스케줄' kor='촬영 스케줄' eng='' jpn='' chn='拍摄行程' />
+    <t value='하기' kor='하기' eng='' jpn='' chn=' ' />
+    <t value='검색어입력' kor='검색어입력' eng='' jpn='' chn=' ' />
+    <t value='분류코드' kor='분류코드' eng='' jpn='' chn='分类方法' />
+    
+    <t value='작성일' kor='작성일' eng='' jpn='' chn='制作日期' />
+    <t value='등록자' kor='등록자' eng='' jpn='' chn='作者' />
+    <t value='조회수' kor='조회수' eng='' jpn='' chn='意见' />
+    <t value='답글쓰기' kor='답글쓰기' eng='' jpn='' chn='回函' />
+    <t value='우선순위' kor='우선순위' eng='' jpn='' chn='优先级' /> 
+    <t value='제작신청하기' kor='제작신청하기' eng='' jpn='' chn='申请制作' />
+    
+    <t value='처리현황' kor='처리현황' eng='' jpn='' chn='处理现状' />
+    <t value='월수정횟수' kor='월수정횟수' eng='' jpn='' chn='月修订次数' />
+    <t value='총수정횟수' kor='총수정횟수' eng='' jpn='' chn='总修订次数' />
+    <t value='수정신청하기' kor='수정신청하기' eng='' jpn='' chn='申请修订' />
+    <t value='수정신청' kor='수정신청' eng='' jpn='' chn='申请修订' />
+    <t value='수정완료' kor='수정완료' eng='' jpn='' chn='完成修订' />
+    <t value='유료수정' kor='유료수정' eng='' jpn='' chn='收费修订' />
+    <t value='수정접수' kor='수정접수' eng='' jpn='' chn='接收修订' />
+    <t value='답변완료' kor='답변완료' eng='' jpn='' chn='完成答辩' />
+    <t value='수정불가' kor='수정불가' eng='' jpn='' chn='不可修改' />
+    <t value='비밀글' kor='비밀글' eng='' jpn='' chn='密语' />
+    <t value='현재설정' kor='현재설정' eng='' jpn='' chn='目前设置' />
+    <t value='카운팅 제외 여부' kor='카운팅 제외 여부' eng='' jpn='' chn='是否计算除外' />
+    <t value='수정내용' kor='수정내용' eng='' jpn='' chn='修改内容' />
+    <t value='예)' kor='예)' eng='' jpn='' chn='例)' />
+    <t value='현재' kor='현재' eng='' jpn='' chn='现' />
+    <t value='다시 로그인하기' kor='다시 로그인하기' eng='' jpn='' chn='重新登陆' />
+    <t value='처리 완료 답변' kor='처리 완료 답변' eng='' jpn='' chn='处理完成答辩' />
+    <t value='처리 지연 답변' kor='처리 지연 답변' eng='' jpn='' chn='处理延迟答辩' />
+    <t value='포토갤러리(중문)' kor='포토갤러리' eng='' jpn='' chn='照片图库' />
+    
+    <t value='WEB' kor='WEB' eng='' jpn='' chn='网页' />
+    <t value='MOBILE' kor='MOBILE' eng='' jpn='' chn='移动网' />
+    <t value='APPLICATION' kor='APPLICATION' eng='' jpn='' chn='应用' />
+    <t value='PROGRAM' kor='PROGRAM' eng='' jpn='' chn='系统' />
+    <t value='NAME' kor='NAME' eng='' jpn='' chn='姓名' />
+    <t value='COMPANY NAME' kor='COMPANY NAME' eng='' jpn='' chn='公司名' />
+    <t value='Contacts' kor='Contacts' eng='' jpn='' chn='联系方式' />
+    
+</root>

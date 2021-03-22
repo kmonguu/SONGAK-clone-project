@@ -1,0 +1,38 @@
+/* 폼 속성 */
+.bbs_form { margin:0; }
+.bbs_ft   { border-color:#dadada; border-style:solid; border-width:1px; }
+.bbs_ft1  { background-color:#000000; color:#ffffff;}
+.bbs_fa   { border:1px solid #dadada; width:100%; line-height:150%; }
+
+/* 표 여백 */
+.bbs_pl { PADDING-LEFT : 5px;color:#444444;}
+.bbs_pr { PADDING-RIGHT :15px; }
+.bbs_pt { PADDING-TOP :   5px; }
+.bbs_pp { PADDING :       5px; }
+
+/* 표 색상 */
+.bbs_head   { background-color:#fafafa; height:34px; }
+.bbs_line1  { background-color:#ffffff; height:1px; }
+.bbs_line2  { background-color:#646464; height:1px; }
+.bbs_notice { background-color:#F5F5F5; }
+
+.tbline1   {border: 1px solid #cdcdcd; }
+.tbline2   {border: 1px solid #ebebeb; font-family:돋움;}
+.tbline3   {border-bottom: 0px solid #ebebeb;}
+.tbline2 a:link,.tbline2 a:visited,.tbline2 a:active { text-decoration:none; color:#7d7978; }
+.tbline2 a:hover { text-decoration:none; }
+.padding2 {padding:4px;}
+
+/* 글자 속성 */
+.bbs_fhead   { color:#444444; font-weight:bold; border-bottom: 1px solid #cdcdcd;}
+.bbs_fs      { color:#888888; font-size:11px; }
+.bbs_content { color:#000000; }
+
+/* 마우스 속성 */
+.bbs_point { CURSOR: pointer; }
+
+/* view comment */
+.c_tc { word-break:break-all; text-align:justify; color:#575757; line-height:150%; padding:8px;}
+.c_tl { background-color:#DADADA; height:1px; }
+
+#monthControl {height:1000px;}

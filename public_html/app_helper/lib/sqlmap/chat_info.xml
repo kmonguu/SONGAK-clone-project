@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+    <sqlMap namespace="ChatInfo">
+            
+        <select id="get">
+            SELECT * FROM chat_info WHERE chat_id = #chat_id#
+        </select>
+        
+        
+        <update id="update" >
+            UPDATE chat_info
+            SET
+                chat_name = #chat_name#
+                , site_key = #site_key#
+                , chat_name = #chat_name#
+                , mod_date = now()
+            WHERE
+                chat_id = #chat_id#
+        </update>
+        
+        
+        <insert id="insert">
+            INSERT INTO 
+                chat_info
+            SET
+                chat_id = #chat_id#
+                , site_key = #site_key#
+                , chat_name = #chat_name#
+                , reg_date = now()
+        </insert>
+        
+        <delete id="delete">
+            DELETE
+            FROM
+                chat_info
+            WHERE
+                chat_id = #chat_id#
+        </delete>
+        
+        
+    </sqlMap>

@@ -1,0 +1,813 @@
+<?
+if (!defined("_GNUBOARD_")) exit;
+
+$begin_time = get_microtime();
+
+
+include_once("$g4[path]/head.sub.admin.php");
+
+function print_menu1($key, $no)
+{
+    global $menu;
+
+    $str = "<table width=130 cellpadding=1 cellspacing=0 id='menu_{$key}' style='position:absolute; display:none; z-index:1;' onpropertychange=\"selectBoxHidden('menu_{$key}')\"><colgroup><colgroup><colgroup width=10><tr><td rowspan=2 colspan=2 bgcolor=#EFCA95><table width=127 cellpadding=0 cellspacing=0 bgcolor=#FEF8F0><colgroup style='padding-left:10px'>";
+    $str .= print_menu2($key, $no);
+    $str .= "</table></td><td></td></tr><tr><td bgcolor=#DDDAD5 height=40></td></tr><tr><td width=4></td><td height=3 width=127 bgcolor=#DDDAD5></td><td bgcolor=#DDDAD5></td></tr></table>\n";
+
+    return $str;
+}
+
+
+function print_menu2($key, $no)
+{
+    global $menu, $auth_menu, $is_admin, $auth, $g4;
+
+    $str = "";
+    for($i=1; $i<count($menu[$key]); $i++)
+    {
+        if ($is_admin != "super" && (!array_key_exists($menu[$key][$i][0],$auth) || !strstr($auth[$menu[$key][$i][0]], "r")))
+            continue;
+
+        if ($menu[$key][$i][0] == "-")
+            $str .= "<tr><td class=bg_line{$no}></td></tr>";
+        else
+        {
+            $span1 = $span2 = "";
+            if (isset($menu[$key][$i][3]))
+            {
+                $span1 = "<span style='{$menu[$key][$i][3]}'>";
+                $span2 = "</span>";
+            }
+            $str .= "<tr><td class=bg_menu{$no}>";
+            if ($no == 2)
+                $str .= "&nbsp;&nbsp;<img src='{$g4[admin_path]}/img/icon.gif' align=absmiddle> ";
+            $str .= "<a href='{$menu[$key][$i][2]}' style='color:#555500;'>{$span1}{$menu[$key][$i][1]}{$span2}</a></td></tr>";
+
+            $auth_menu[$menu[$key][$i][0]] = $menu[$key][$i][1];
+        }
+    }
+
+    return $str;
+}
+
+
+/* 메뉴설정 */
+$menu_list = array();
+
+$menu_list["config"] = array(
+					"name"=>"환경설정",
+					"url"=>array(
+								"/adm/config_form.php",
+								// "/adm/auth_list.php",
+								// "/adm/auth_form.php",
+								"/adm/sendmail_test.php",
+								// "/adm/version.php",
+								// "/adm/phpinfo.php",
+								// "/adm/upgrade.php",
+								// "/adm/repair.php",
+								// "/adm/session_delete.php",
+								),
+					"sub"=>array(
+						"기본환경설정"=>array("/adm/config_form.php",),
+						//"관리권한설정"=>array("/adm/auth_list.php","/adm/auth_form.php",),
+						"메일 테스트"=>array("/adm/sendmail_test.php",),
+						//"버전정보"=>array("/adm/version.php",),
+						//"phpinfo()"=>array("/adm/phpinfo.php",),
+						//"업그레이드"=>array("/adm/sendmail_test.php",),
+						//"복구/최적화"=>array("/adm/repair.php",),
+						//"세션 삭제"=>array("/adm/session_delete.php",),
+					)
+			);
+
+$menu_list["member"] = array(
+						"name"=>"회원관리",
+						"url"=>array("/adm/member_list.php",
+										"/adm/member_form.php",
+										"/adm/point_list.php",
+										"/adm/point_form.php",
+										"/adm/mail_list.php",
+										"/adm/mail_form.php",
+										"/adm/visit_list.php",
+										"/adm/visit_form.php",
+										"/adm/visit_domain.php",
+										"/adm/visit_browser.php",
+										"/adm/visit_os.php",
+										"/adm/visit_hour.php",
+										"/adm/visit_week.php",
+										"/adm/visit_date.php",
+										"/adm/visit_month.php",
+										"/adm/visit_year.php",
+										"/adm/m3sq.php",
+										"/adm/call_list.php",
+										//"/adm/poll_list.php",
+										//"/adm/poll_form.php",
+										),
+						"sub"=>array(
+							"회원관리"=>array("/adm/member_list.php","/adm/member_form.php",),
+							"포인트관리"=>array("/adm/point_list.php","/adm/point_form.php",),
+							"회원메일발송"=>array("/adm/mail_list.php","/adm/mail_form.php",),
+							"접속자현황"=>array("/adm/visit_list.php","/adm/visit_form.php","/adm/visit_domain.php","/adm/visit_browser.php","/adm/visit_os.php","/adm/visit_hour.php","/adm/visit_week.php","/adm/visit_date.php","/adm/visit_month.php","/adm/visit_year.php",),
+							"접속자분석기"=>array("/adm/m3sq.php","/adm/m3sq.php",),
+							"전화걸기현황"=>array("/adm/call_list.php",),
+							//"투표관리"=>array("/adm/poll_list.php","/adm/poll_form.php",),
+						),
+		);
+
+
+$menu_list["board"] = array(
+						"name"=>"게시판관리",
+						"url"=>array("/adm/board_list.php",
+									 "/adm/board_form.php",
+									 "/adm/boardgroup_list.php",
+									 "/adm/boardgroup_form.php",
+									 //"/adm/popular_list.php",
+									 //"/adm/popular_form.php",
+									 //"/adm/popular_rank.php",
+									 ),
+						"sub"=>array(
+							"게시판관리"=>array("/adm/board_list.php","/adm/board_form.php",),
+							"게시판그룹관리"=>array("/adm/boardgroup_list.php","/adm/boardgroup_form.php",),
+							//"인기검색어관리"=>array("/adm/popular_list.php","/adm/popular_form.php",),
+							//"인기검색어순위"=>array("/adm/popular_rank.php",),
+						),
+				);
+					
+
+if(USE_SHOP) { //config.php
+	$menu_list["shop"] = array(
+							"name"=>"쇼핑몰관리",
+							"url"=>array(
+										"/adm/shop_admin/orderlist.php",
+
+										"/adm/shop_admin/configform.php",
+										"/adm/shop_admin/categorylist.php",
+										"/adm/shop_admin/categoryform.php",
+										"/adm/shop_admin/itemlist.php",
+										"/adm/shop_admin/itemform.php",
+										
+										"/adm/shop_admin/order_offline.php",
+										"/adm/shop_admin/orderform.php",
+										"/adm/shop_admin/orderstatuslist.php",
+										"/adm/shop_admin/orderlist2.php",
+										"/adm/shop_admin/deliverylist.php",
+										//"/adm/shop_admin/onlinecalclist.php",
+										//"/adm/shop_admin/onlinecalcform.php",
+										"/adm/shop_admin/itemtypelist.php",
+										"/adm/shop_admin/itemstocklist.php",
+										//"/adm/shop_admin/itemevent.php",
+										//"/adm/shop_admin/itemeventform.php",
+										//"/adm/shop_admin/itemeventlist.php",
+										//"/adm/shop_admin/itemeventform.php",
+										//"/adm/shop_admin/itempslist.php",
+										//"/adm/shop_admin/itemqalist.php",
+										"/adm/shop_admin/deliverycodelist.php",
+										"/adm/shop_admin/deliverycodeform.php",
+										"/adm/coupon/list.php",
+										),
+							"sub"=>array(
+								"쇼핑몰설정"=>array("/adm/shop_admin/configform.php",),
+								"분류관리"=>array("/adm/shop_admin/categorylist.php","/adm/shop_admin/categoryform.php",),
+								"상품관리"=>array("/adm/shop_admin/itemlist.php","/adm/shop_admin/itemform.php",),
+								"주문관리"=>array("/adm/shop_admin/orderlist.php","/adm/shop_admin/orderform.php", "/adm/shop_admin/order_offline.php",),
+								"주문개별관리"=>array("/adm/shop_admin/orderstatuslist.php",),
+								"주문통합관리"=>array("/adm/shop_admin/orderlist2.php",),
+								"배송일괄처리"=>array("/adm/shop_admin/deliverylist.php",),
+								//"온라인견적"=>array("/adm/shop_admin/onlinecalclist.php","/adm/shop_admin/onlinecalcform.php",),
+								"상품유형관리"=>array("/adm/shop_admin/itemtypelist.php",),
+								"상품재고관리"=>array("/adm/shop_admin/itemstocklist.php",),
+								//"이벤트관리"=>array("/adm/shop_admin/itemevent.php","/adm/shop_admin/itemeventform.php",),
+								//"이벤트일괄처리"=>array("/adm/shop_admin/itemeventform.php",),
+								//"사용후기"=>array("/adm/shop_admin/itempslist.php",),
+								//"상품문의"=>array("/adm/shop_admin/itemqalist.php",),
+								"배송회사관리"=>array("/adm/shop_admin/deliverycodelist.php","/adm/shop_admin/deliverycodeform.php",),
+								"쿠폰관리"=>array("/adm/coupon/list.php"),
+							),
+					);
+
+	$menu_list["shop_stat"] = array(
+							"name"=>"쇼핑몰현황",
+							"url"=>array("/adm/shop_admin/itemsellrank.php",
+										"/adm/shop_admin/sale1.php",
+										"/adm/shop_admin/sale1today.php",
+										"/adm/shop_admin/sale1date.php",
+										"/adm/shop_admin/sale1month.php",
+										"/adm/shop_admin/sale1year.php",
+										"/adm/shop_admin/orderprint.php",
+										"/adm/shop_admin/ordercardhistory.php",
+										//"/adm/shop_admin/wishlist.php",
+										//"/adm/shop_admin/smssend.php",
+										//"/adm/shop_admin/price.php",
+										),
+							"sub"=>array(
+								"상품판매순위"=>array("/adm/shop_admin/itemsellrank.php",),
+								"매출현황"=>array("/adm/shop_admin/sale1.php","/adm/shop_admin/sale1today.php","/adm/shop_admin/sale1date.php","/adm/shop_admin/sale1month.php","/adm/shop_admin/sale1year.php",),
+								"주문내역출력"=>array("/adm/shop_admin/orderprint.php",),
+								"전자결제내역"=>array("/adm/shop_admin/ordercardhistory.php",),
+								//"보관함현황"=>array("/adm/shop_admin/wishlist.php",),
+								//"SMS문자전송"=>array("/adm/shop_admin/smssend.php",),
+								//"가격비교사이트"=>array("/adm/shop_admin/price.php",),							
+							),
+
+					);
+}
+
+
+
+$menu_list["popupmanager"] = array(
+						"name"=>"팝업창관리",
+						"url"=>array(
+								"/adm/pop_list.php",
+								"/adm/pop_list_mobile.php",
+								"/adm/pop_form.php",
+								"/adm/pop_form_mobile.php",
+						),
+						"sub"=>array(
+								"팝업관리(PC)"=>array("/adm/pop_list.php","/adm/pop_form.php",),
+								"팝업관리(MOBILE)"=>array("/adm/pop_list_mobile.php","/adm/pop_form_mobile.php",),
+						),
+					);
+
+
+$menu_list["ninetalk"] = array(
+							"name"=>"실시간문의",
+							"url"=>array(
+									"/adm/ninetalk/list.php",
+									"/adm/ninetalk/config.php",
+							),
+							"sub"=>array(
+									"대화목록"=>array("/adm/ninetalk/list.php",),
+									"설정"=>array("/adm/ninetalk/config.php",),
+							),
+					);
+
+
+/*
+$menu_list["moamoa"] = array(
+						"name"=>"블로그관리",
+						"url"=>array("/adm/blog/blog_list.php"),
+						"sub"=>array(
+							"블로그관리"=>array("/adm/blog/blog_list.php")
+						),
+					);
+*/
+
+
+
+$menu_list["apistore_kko"] = array(
+	"name"=>"알림톡",
+	"url"=>array(
+				 "/adm/apistore_kko/config.php",
+				 "/adm/apistore_kko/send_sms.php",
+				 "/adm/apistore_kko/message_list.php",
+				 "/adm/apistore_kko/message_form.php",
+				 "/adm/apistore_kko/history.php",
+				 "/adm/apistore_kko/history_form.php",
+				 "/adm/apistore_kko/send_sms_excel.php"
+				 ),
+	"sub"=>array(							
+		"알림톡 환경설정"=>array("/adm/apistore_kko/config.php",),							
+		"메시지설정"=>array("/adm/apistore_kko/message_list.php",
+				 "/adm/apistore_kko/message_form.php",),
+		"메시지전송기록"=>array("/adm/apistore_kko/history.php",
+				"/adm/apistore_kko/history_form.php"),
+	),
+);
+
+
+
+if(file_exists("{$g4[path]}/adm/sms_admin/config.php")) {
+	/* OLD VERSION
+		$menu_list["sms"] = array(
+			"name"=>"SMS",
+			"url"=>array("/adm/sms_admin/config.php",
+							"/adm/sms_admin/member_update.php",
+								"/adm/sms_admin/upgrade.php",
+							"/adm/sms_admin/sms_write.php",
+							"/adm/sms_admin/history_list.php",
+								"/adm/sms_admin/history_num.php",
+							"/adm/sms_admin/history_member.php",
+							"/adm/sms_admin/num_group.php",
+							"/adm/sms_admin/num_book.php",
+							"/adm/sms_admin/num_book_file.php",
+							"/adm/sms_admin/history_sale.php",),
+			"sub"=>array(
+				"SMS기본설정"=>array("/adm/sms_admin/config.php",),
+				"회원업데이트"=>array("/adm/sms_admin/member_update.php",),
+				//"업그레이드"=>array("/adm/sms_admin/upgrade.php",),
+				"문자보내기"=>array("/adm/sms_admin/sms_write.php",),
+				"전송내역-건별"=>array("/adm/sms_admin/history_list.php",),
+				"전송내역-번호별"=>array("/adm/sms_admin/history_num.php",),
+				"전송내역-회원"=>array("/adm/sms_admin/history_member.php",),
+				"핸드폰번호 그룹"=>array("/adm/sms_admin/num_group.php",),
+				"핸드폰번호 관리"=>array("/adm/sms_admin/num_book.php",),
+				"핸드폰번호 파일"=>array("/adm/sms_admin/num_book_file.php",),
+				//"정산내역"=>array("/adm/sms_admin/history_sale.php",),
+			),
+		);
+		*/
+
+		$menu_list["sms"] = array(
+			"name"=>"SMS",
+			"url"=>array("/adm/sms_admin/config.php",
+							"/adm/sms_admin/send_sms.php",
+							"/adm/sms_admin/message.php", "/adm/sms_admin/message_form.php",
+							"/adm/sms_admin/config.php",
+							"/adm/sms_admin/result.php", "/adm/sms_admin/form.php",
+							"/adm/sms_admin/list.php",
+							"/adm/sms_admin/member_update.php",
+								"/adm/sms_admin/upgrade.php",
+							"/adm/sms_admin/sms_write.php",
+							"/adm/sms_admin/history_list.php",
+								"/adm/sms_admin/history_num.php",
+							"/adm/sms_admin/history_member.php",
+							"/adm/sms_admin/num_group.php",
+							"/adm/sms_admin/num_book.php",
+							"/adm/sms_admin/num_book_file.php",
+							"/adm/sms_admin/history_sale.php",),
+			"sub"=>array(
+				"SMS기본설정"=>array("/adm/sms_admin/config.php",),
+				"회원 문자발송"=>array("/adm/sms_admin/send_sms.php",),
+				"메시지 템플릿"=>array("/adm/sms_admin/message.php", "/adm/sms_admin/message_form.php"),
+				"메시지 전송결과"=>array("/adm/sms_admin/result.php", "/adm/sms_admin/form.php",),
+				"메시지 발송내역"=>array("/adm/sms_admin/list.php",),
+			),
+		);
+}
+
+
+$menu_list["home"] = array(
+						"name"=>"HOME",
+						"url"=>array("/",	
+									 "/adm/index.php",
+									 ),
+						"sub"=>array(							
+							"welcome"=>array("/adm/index.php",),
+						),
+					);
+
+
+				
+//모바일이 없을경우 모바일팝업관리 메뉴 제거
+if(!file_exists("{$g4[path]}/m/index.php")) unset($menu_list["popupmanager"]["sub"]["팝업관리(MOBILE)"]);
+
+?>
+
+<script type="text/javascript">
+if (!g4_is_ie) document.captureEvents(Event.MOUSEMOVE)
+document.onmousemove = getMouseXY;
+var tempX = 0;
+var tempY = 0;
+var prevdiv = null;
+var timerID = null;
+
+function getMouseXY(e)
+{
+    if (g4_is_ie) { // grab the x-y pos.s if browser is IE
+        tempX = event.clientX + document.body.scrollLeft;
+        tempY = event.clientY + document.body.scrollTop;
+    } else {  // grab the x-y pos.s if browser is NS
+        tempX = e.pageX;
+        tempY = e.pageY;
+    }
+
+    if (tempX < 0) {tempX = 0;}
+    if (tempY < 0) {tempY = 0;}
+
+    return true;
+}
+
+function imageview(id, w, h)
+{
+
+    menu(id);
+
+    var el_id = document.getElementById(id);
+
+    //submenu = eval(name+".style");
+    submenu = el_id.style;
+    submenu.left = tempX - ( w + 11 );
+    submenu.top  = tempY - ( h / 2 );
+
+    selectBoxVisible();
+
+    if (el_id.style.display != 'none')
+        selectBoxHidden(id);
+}
+
+function help(id, left, top)
+{
+    menu(id);
+
+    var el_id = document.getElementById(id);
+
+    //submenu = eval(name+".style");
+    submenu = el_id.style;
+    submenu.left = tempX - 50 + left;
+    submenu.top  = tempY + 15 + top;
+
+    selectBoxVisible();
+
+    if (el_id.style.display != 'none')
+        selectBoxHidden(id);
+}
+
+// TEXTAREA 사이즈 변경
+function textarea_size(fld, size)
+{
+	var rows = parseInt(fld.rows);
+
+	rows += parseInt(size);
+	if (rows > 0) {
+		fld.rows = rows;
+	}
+}
+</script>
+
+<script type="text/javascript" src="<?=$g4['path']?>/js/common.js"></script>
+<!--
+<script type="text/javascript" src="<?=$g4['path']?>/js/one.common.js"></script>
+<script type="text/javascript" src="<?=$g4['path']?>/js/one.dragdrop.js"></script>
+-->
+<script type="text/javascript" src="<?=$g4['path']?>/js/sideview.js"></script>
+<!--[if IE]>
+	<meta http-equiv="imagetoolbar" content="no">
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+<script type="text/javascript">
+var save_layer = null;
+function layer_view(link_id, menu_id, opt, x, y)
+{
+    var link = document.getElementById(link_id);
+    var menu = document.getElementById(menu_id);
+
+    //for (i in link) { document.write(i + '<br/>'); } return;
+
+    if (save_layer != null)
+    {
+        save_layer.style.display = "none";
+        selectBoxVisible();
+    }
+
+    if (link_id == '')
+        return;
+
+    if (opt == 'hide')
+    {
+        menu.style.display = 'none';
+        selectBoxVisible();
+    }
+    else
+    {
+        x = parseInt(x);
+        y = parseInt(y);
+        menu.style.left = get_left_pos(link) + x;
+        menu.style.top  = get_top_pos(link) + link.offsetHeight + y;
+        menu.style.display = 'block';
+    }
+
+    save_layer = menu;
+}
+</script>
+
+<link rel="stylesheet" href="<?=$g4['admin_path']?>/admin.style.css" type="text/css">
+<style>
+a:link, a:visited, a:active { text-decoration:none; color:#004280; }
+a:hover { text-decoration:underline; color:#006cd1; }
+
+article, aside, figure, footer, header, hgroup,
+menu, nav, section { display: block; }
+
+h1,h2,h3,h4,h5,p { line-height:1; margin:0; padding:0; }
+html { overflow-y:scroll; }
+body { margin:0; padding:0; }
+img { border:0; }
+
+
+
+
+
+body, td, p, input, button, textarea, select, .c1 { font-family:Tahoma,굴림; font-size:12px; color:#222222; }
+
+form { margin:0px; }
+
+
+a:link, a:visited, a:active { text-decoration:none; color:#466C8A; }
+a:hover { text-decoration:underline; }
+
+a.menu:link, a.menu:visited, a.menu:active { text-decoration:none; color:#454545; }
+a.menu:hover { text-decoration:none; }
+
+.member {font-weight:bold;color:#888888;}
+.guest  {font-weight:normal;color:#888888;}
+
+.lh { line-height: 150%; }
+.jt { text-align:justify; }
+
+.li { font-weight:bold; font-size:18px; vertical-align:-4px; color:#66AEAD; }
+
+.ul { list-style-type:square; color:#66AEAD; }
+
+.ct { font-family: Verdana, 굴림; color:#222222; }
+
+.ed { border:1px solid #CCCCCC; }
+.tx { border:1px solid #CCCCCC; }
+
+.small { font-size:8pt; font-family:돋움; }
+.cloudy, a.cloudy {color:#888888;} /* 흐림 */
+
+input.ed { height:20px; border:1px solid #9A9A9A; border-right:1px solid #D8D8D8; border-bottom:1px solid #D8D8D8; padding:3px 2px 0 2px;}
+input.ed_password { height:20px; border:1px solid #9A9A9A; border-right:1px solid #D8D8D8; border-bottom:1px solid #D8D8D8; padding:3px 2px 0 2px; font:10px Tahoma; }
+textarea.tx { border:1px solid #9A9A9A; border-right:1px solid #D8D8D8; border-bottom:1px solid #D8D8D8; padding:2px; }
+
+
+.title { font-size:9pt; font-family:굴림; font-weight:bold; color:#616161; }
+
+.btn1 { background-color:#f2f9ff;padding: 5px 12px;border: 1px solid #adadad;box-shadow: #efefef 3px 3px 3px; }
+
+.col1 { color:#616161; }
+.col2 { color:#868686; }
+
+.pad1 { padding:5px 10px 5px 10px; }
+.pad2 { padding:5px 0px 5px 0px; }
+
+.bgcol1 { background-color:#f0f8ff; padding:5px;border-top:2px solid #0e87f9;}
+.bgcol2 { background-color:#F5F5F5; padding:5px; }
+
+.line1 { background-color:#CCCCCC; height:2px;padding:0;margin:0;  }
+.line2 { background-color:#CCCCCC; height:1px;padding:0;margin:0; }
+
+.list0 { background-color:#FFFFFF; }
+.list1 { background-color:#F8F8F8; }
+
+.bold { font-weight:bold; }
+.center { text-align:center; }
+.right { text-align:right; }
+
+.w99 { width:99%; }
+.ht { height:30px; }
+
+.bg_menu1 { height:22px;
+            padding-left:15px;
+            padding-right:15px; }
+.bg_line1 { height:1px; background-color:#EFCA95; }
+
+.bg_menu2 { height:22px;
+            padding-left:25px; }
+.bg_line2 { background-image:url('<?=$g4['admin_path']?>/img/dot.gif'); height:3px; }
+.dot {color:#D6D0C8;border-style:dotted;}
+
+#csshelp1 { border:0px; background:#FFFFFF; padding:6px; }
+#csshelp2 { border:2px solid #BDBEC6; padding:0px; }
+#csshelp3 { background:#F9F9F9; padding:6px; width:200px; color:#222222; line-height:120%; text-align:left; }
+
+
+h1 { font:bold 14px dotum; letter-spacing:-1px; }
+h1.title { font:bold 14px dotum; letter-spacing:-1px;color:#fff; }
+header {position:relative; background:url('/adm/img/member_bg.jpg') repeat-x left top; width:100%; }
+header h1 { margin:0 20px 15px 20px; font-size:0; line-height:1; padding-top:15px; }
+header ul.gnb { height:1%; list-style:none; margin:0; margin-left:20px; padding:0; border-left:1px solid #555555; }
+header >/**/ ul.gnb { height:auto; }
+header ul.gnb:after { content:""; clear:both; display:block; }
+header ul.gnb li { display:block; float:left; }
+header ul.gnb li a:link,
+header ul.gnb li a:visited { display:block;  width:100px; padding:10px; color:#d5d5d5; background:#404149; border:1px solid #555555; border-left:0; text-align:center; }
+header ul.gnb li a:hover,
+header ul.gnb li a:active { background:#505159; color:#ffffff; text-decoration:none; }
+header ul.gnb li a.active { background:#ffffff !important; color:#cb0000 !important; text-decoration:none; border-bottom-color:#ffffff !important; font-weight:bold; }
+footer { margin:0 auto; border-top:1px solid #dfdfdf; margin-top:20px; margin-bottom:20px; text-align:center; padding-top:20px;}
+div.side { position:absolute; right:10px; top:10px; color:#dddddd; font:11px dotum; letter-spacing:-1px; }
+div.side a { color:#ffffff !important; }
+div.side02 { position:absolute; right:55px; top:33px; color:#dddddd; font:11px dotum; letter-spacing:-1px; }
+div.side03 { position:absolute; right:11px; top:49px; color:#ffffff; font:11px dotum; font-size:12px; }
+footer p { font:11px verdana; letter-spacing:-1px; color:#666666; }
+footer span { border-right:1px solid #aaaaaa; display:inline-block; height:7px; width:1px; }
+.panel { padding:10px; margin:10px; }
+div.navi { border:1px solid #dfdfdf; padding:5px 0 5px 0; margin:10px 0; }
+div.navi02 {float:left; border:1px solid #dfdfdf; padding:5px 0 5px 0; margin:10px 0; }
+div.navi03 {float:left; border:1px solid #dfdfdf; padding:5px 0 5px 0; margin:10px 0; }
+div.nav { background:url('/adm/img/nav_bg.gif') repeat-x left bottom;  height:1%; }
+div.navi >/**/ div.nav { height:auto; }
+div.navi02 >/**/ div.nav { height:auto; }
+div.nav ul { float:left; list-style:none; margin:0; padding:0; border-left:1px solid #aaaaaa; padding-right:5px; }
+div.nav >/**/ ul { height:auto; }
+div.nav:after { content:""; clear:both; display:block; }
+div.nav li { float:left; display:block; border:1px solid #aaaaaa; border-left:0; }
+div.nav li a { display:block; width:120px; text-align:center; padding:7px; background:#efefef; }
+div.nav li.active { border-bottom-color:#ffffff;  }
+div.nav li.active a { background:#ffffff; }
+div.navi form { display:inline; }
+div.navi label,
+
+div.navi div { clear:both; padding-top:10px;}
+table.list { border-collapse:collapse; width:100%;border-top:2px solid #0e87f9; }
+table.list th { font:11px dotum; letter-spacing:-1px; padding:10px 0; border-bottom:2px solid #333333; }
+table.list td { border:1px solid #dfdfdf; text-align:center; padding:5px; }
+table.list td.right {text-align:right;padding:0 20px 0 0;}
+table.list02 { border-collapse:collapse; width:1000px;border-top:2px solid #0e87f9; }
+table.list02 th { font:11px dotum; letter-spacing:-1px; padding:10px 0; border-bottom:2px solid #333333; }
+table.list02 td { border:1px solid #dfdfdf; text-align:left; padding:5px 5px 5px 10px; }
+table.list02 td.head {padding:0 0 0 20px;font-weight:bold;background:#f3f3f3;color:#656565;}
+table.list03 { border-collapse:collapse; width:1000px; text-align:center;border-top:2px solid #0e87f9;}
+table.list03 th { font:11px dotum; letter-spacing:-1px; padding:10px 0; border-bottom:2px solid #333333; }
+table.list03 td { border:1px solid #dfdfdf; text-align:left; padding:5px;text-align:center; }
+table.list03 td.left { border:1px solid #dfdfdf; text-align:left; padding:5px;text-align:left; }
+table.list03 td.right { border:1px solid #dfdfdf; text-align:left; padding:5px 15px 5px 5px;text-align:right; }
+table.list03 td.head {padding:0 0 0 20px;font-weight:bold;background:#f3f3f3;color:#656565;}
+table.list04 { border-collapse:collapse; width:495px; text-align:center;border-top:2px solid #0e87f9;}
+table.list04 th { font:11px dotum; letter-spacing:-1px; padding:10px 0; border-bottom:2px solid #333333; }
+table.list04 td { border:1px solid #dfdfdf; text-align:left; padding:5px; }
+table.list04 td.left { border:1px solid #dfdfdf; text-align:left; padding:5px;text-align:left; }
+table.list04 td.head {padding:0 0 0 8px;font-weight:bold;background:#f3f3f3;color:#656565;text-align:left;}
+table.list05 { border-collapse:collapse; width:592px; text-align:center;border-top:2px solid #0e87f9;}
+table.list05 th { font:11px dotum; letter-spacing:-1px; padding:10px 0; border-bottom:2px solid #333333; }
+table.list05 td { border:1px solid #dfdfdf; text-align:left; padding:5px;text-align:center; }
+table.list05 td.left { border:1px solid #dfdfdf; text-align:left; padding:5px;text-align:left; }
+table.list05 td.right { border:1px solid #dfdfdf; text-align:left; padding:5px 15px 5px 5px;text-align:right; }
+table.list05 td.head {padding:0 0 0 20px;font-weight:bold;background:#f3f3f3;color:#656565;}
+table.list06 { border-collapse:collapse; width:755px;border-top:2px solid #0e87f9; }
+table.list06 th { font:11px dotum; letter-spacing:-1px; padding:10px 0; border-bottom:2px solid #333333; }
+table.list06 td { border:1px solid #dfdfdf; text-align:left; padding:5px 5px 5px 10px; }
+table.list06 td.head {padding:0 0 0 20px;font-weight:bold;background:#f3f3f3;color:#656565;}
+table.list07 { border-collapse:collapse; width:755px; text-align:center;border-top:2px solid #0e87f9;}
+table.list07 th { font:11px dotum; letter-spacing:-1px; padding:10px 0; border-bottom:2px solid #333333; }
+table.list07 td { border:1px solid #dfdfdf; text-align:left; padding:5px;text-align:center; }
+table.list07 td.left { border:1px solid #dfdfdf; text-align:left; padding:5px;text-align:left; }
+table.list07 td.right { border:1px solid #dfdfdf; text-align:left; padding:5px 15px 5px 5px;text-align:right; }
+table.list07 td.head {padding:0 0 0 20px;font-weight:bold;background:#f3f3f3;color:#656565;}
+
+.latest { position:absolute; top:30px; right:10px; background:#444444; border:1px solid #555555; padding-bottom:8px; }
+
+.blue {color:#1275e0;}
+.blue1 {color:#1275e0;font-weight:bold;}
+.red {color:#ee020d;}
+.red1 {color:#ee020d;font-weight:bold;}
+.orange {color:#fb7c00;}
+.orange1 {color:#fb7c00;font-weight:bold;}
+
+.RoomCal2 {float:left;width:961px;margin:24px 0 0 0;}
+.RoomCalTop2 {float:left;width:958px;}
+.RoomCaltopBtn2 {float:left;width:275px;}
+.RoomCaltopBtn2 ul {float:left;padding:0 0 0 5px;}
+.RoomCaltopBtn2 ul li {float:left;}
+.RoomCaltopBtn2 ul li.tw {margin:0;padding:0 0 0 5px;}
+.RoomCaltopBtn2 ul li.two {margin:2px 0 0 0;padding:0 0 0 11px;}
+.RoomCaltopBtn2 ul li.th {margin:2px 0 0 0;padding:0 0 0 2px;}
+.RoomCaltopBtn2 ul li.fo {margin:2px 0 0 0;padding:0 0 0 2px;}
+.RoomCaltopBtn2 ul li.fo1 {margin:1px 0 0 0;padding:0 0 0 6px;}
+.RoomCaltopBtn2 ul li.last {padding:0 0 0 11px;}
+.RoomCaltopBtn2 ul li.last02 {margin:0;padding:0 0 0 11px;}
+
+.total04 {float:right;width:924px;margin:45px 0 0 0;position:relative;}
+.total04 dl {float:left; }
+.total04 dt,
+.total04 dd { float:left; padding:3px 0 3px 0; margin:0; }
+.total04 dd.po { width:29px;border:0px;background:none; }
+.total04 dt { padding:0 13px 0 0;margin:12px 0 0 0;}
+.total04 dd { border:1px solid #c8c8c8; background-color:#f6f6f6; color:#dc0000;font:bold 15px 'arial black'; width:102px; text-align:right; }
+.total04 dd.btn {float:left;border:0px; margin:0 0 0 0;padding:0 0 0 10px;width:96px;}
+.total04 dd.btn02 {float:left;border:0px; margin:0 0 0 0;padding:0 0 0 10px;width:82px;}
+.total04 dd.btn03 {float:left;border:0px; margin:0 0 0 0;padding:0 0 0 6px;width:82px;}
+.total04 dd.btn04 {float:left;border:0px; margin:0 0 0 0;padding:0 0 0 6px;width:79px;}
+
+.total04 dd span { font:bold 12px dotum; }
+.total04 dd span.price { color:#dc0000; font:bold 15px 'arial black'; }
+
+.total05 {float:right;width:814px;margin:45px 0 0 0;position:relative;}
+.total05 dl {float:left; }
+.total05 dt,
+.total05 dd { float:left; padding:3px 0 3px 0; margin:0; }
+.total05 dd.po { width:29px;border:0px;background:none; }
+.total05 dt { padding:0 13px 0 0;margin:12px 0 0 0;}
+.total05 dd { border:1px solid #c8c8c8; background-color:#f6f6f6; color:#dc0000;font:bold 15px 'arial black'; width:102px; text-align:right; }
+.total05 dd.btn {float:left;border:0px; margin:0 0 0 0;padding:0 0 0 10px;width:96px;}
+.total05 dd.btn02 {float:left;border:0px; margin:0 0 0 0;padding:0 0 0 10px;width:79px;}
+.total05 dd.btn03 {float:left;border:0px; margin:0 0 0 0;padding:0 0 0 6px;width:46px;}
+
+.total05 dd span { font:bold 12px dotum; }
+.total05 dd span.price { color:#dc0000; font:bold 15px 'arial black'; }
+/*.total03 dd span#totalAmt_ter { color:#dc0000; font:bold 15px 'arial black'; }
+.total03 dd span#totalAmt_tot { color:#dc0000; font:bold 15px 'arial black'; }*/
+.Pos01 {position:absolute;top:-22px;*top:-32px;_top:-32px;left:52px;}
+.Pos02 {position:absolute;top:-22px;*top:-32px;_top:-32px;left:160px;*left:156;_left:156px;}
+.Pos03 {position:absolute;top:-22px;*top:-32px;_top:-32px;left:292px;*left:287;_left:287px;}
+.Pos04 {position:absolute;top:-22px;*top:-32px;_top:-32px;left:450px;*left:445;_left:445px;}
+.Pos05 {position:absolute;top:-22px;*top:-32px;_top:-32px;left:584px;*left:577;_left:577px;}
+.Pos06 {position:absolute;top:9px;*top:-4px;_top:-4px;left:111px;*left:109;_left:109px;}
+.Pos07 {position:absolute;top:9px;*top:-4px;_top:-4px;left:244px;*left:240;_left:240px;}
+.Pos08 {position:absolute;top:9px;*top:-4px;_top:-4px;left:377px;*left:371;_left:371px;}
+.Pos09 {position:absolute;top:9px;*top:-4px;_top:-4px;left:510px;*left:502;_left:502px;}
+.Pos10 {position:absolute;top:11px;*top:1px;_top:1px;left:633px;}
+
+.Pos11 {position:absolute;top:52px;*top:34px;_top:34px;left:52px;}
+.Pos12 {position:absolute;top:52px;*top:34px;_top:34px;left:160px;*left:156;_left:156px;}
+.Pos13 {position:absolute;top:52px;*top:34px;_top:34px;left:292px;*left:287;_left:287px;}
+.Pos14 {position:absolute;top:52px;*top:34px;_top:34px;left:450px;*left:445;_left:445px;}
+.Pos15 {position:absolute;top:52px;*top:34px;_top:34px;left:584px;*left:577;_left:577px;}
+.Pos16 {position:absolute;top:81px;*top:62px;_top:62px;left:111px;*left:109;_left:109px;}
+.Pos17 {position:absolute;top:81px;*top:62px;_top:62px;left:244px;*left:240;_left:240px;}
+.Pos18 {position:absolute;top:81px;*top:62px;_top:62px;left:377px;*left:371;_left:371px;}
+.Pos19 {position:absolute;top:81px;*top:62px;_top:62px;left:510px;*left:502;_left:502px;}
+.Pos20 {position:absolute;top:11px;*top:1px;_top:1px;left:633px;}
+
+
+</style>
+
+<body leftmargin=0 topmargin=0>
+<a name='gnuboard4_admin_head'></a>
+<header>
+	<span onclick="document.location='/adm/index.php'" style="cursor:hand;"><h1 class="title" >관리자</h1></span>
+	<ul class="gnb">
+	<?
+		$sub_list = array();
+		$class = "";
+		foreach($menu_list as $key=> $value){
+				/*if($value["auth"] == "Y"){
+					if($conf_member[mb_level] <= 5) continue;
+				}else if($value["auth"] == "N"){
+					if($conf_member[mb_level] >= 7 ) continue;
+					if(!$value["tour"]&& $conf_member[mb_level] == 4 ) continue;
+					if($value["manage"] == "Y" && $conf_member[mb_level] < 5) continue;
+					if($value["tour"] == "Y" && $conf_member[mb_level] != 4) continue;
+				}*/
+
+				if($_SERVER["PHP_SELF"] == $value["url"][0]){
+					$class="active";
+					if(count($value["sub"])>0) $sub_list = $value["sub"];
+
+				}else{
+						$class="";
+				}
+
+				for($i=0; $i < count($value["url"]); $i++){
+					if($_SERVER["PHP_SELF"] == $value["url"][$i]){
+						$class="active";
+						if(count($value["sub"])>0) $sub_list = $value["sub"];
+					}
+				}
+				echo "<li><a href=\"".$value['url'][0]."\" class=\"$class\" $target>".$value["name"]."</a></li>";
+
+		}
+	?>
+	</ul>
+	<div class="side">
+		<strong><?=$member['mb_name']?></strong>님 안녕하세요! <!--&nbsp;&nbsp;&nbsp;<a href="https://www.google.com/intl/ko/chrome/browser/eula.html?hl=ko" target="_blank">최적화된 관리를 위해 크롬을 사용해보세요^^</a>-->&nbsp;&nbsp;&nbsp;<a href="/bbs/logout.php?url=/login">로그아웃</a>
+	</div>
+	<!--<div class="side02">
+		<img src="<?=$g4['admin_path']?>/img/logo.jpg" />
+	</div>
+	<div class="side03">
+		Ver 1.0
+	</div>-->
+
+	<?if(is_file("{$g4["path"]}/app_helper/app.php")) {?>
+	<div class="side" style="top:30px;">
+	   Helper Ver.1.1
+	</div>
+	<?}?>
+
+</header>
+<?
+//$str = "Find first occurrence of a string";
+//echo stristr($str, "oc") . "<BR>";
+//echo stristr($str, "Oc") . "<BR>";
+//echo stristr($str, "of") . "<BR>";
+?>
+<script>
+	function adminLogin() {
+		var f = document.forms["adminLogin"];
+		f.mb_id.value = "webmaster";
+		f.action = '<?=$g4[bbs_path]?>/login_check.php';
+		f.submit();
+	}
+</script>
+<div style="position:relative;">
+<table width=100% cellpadding=0 cellspacing=0 border=0 style="margin:20px 0 0 0;padding:0 20px;">
+
+<tr>
+	<td>
+		<div class='nav'>
+			<ul>
+				<?
+
+					foreach($sub_list as $key=> $value){
+						$class="";
+						$list_mn = $value;
+						foreach($list_mn as $url){
+							if(strrpos($url, $_SERVER["PHP_SELF"]) !== false){
+								$class="class='active'";
+							}
+						}
+
+						$temp = explode("||", $list_mn[0]);
+
+						echo "<li $class ><a href=\"".$temp[0]."\" >".$key. "</a></li>";
+					}
+
+				?>
+			</ul>
+		</div>
+	</td>
+</tr>
+<tr>
+    <td valign=top style="margin:0 10px 0 10px;padding-top:10px;">
+

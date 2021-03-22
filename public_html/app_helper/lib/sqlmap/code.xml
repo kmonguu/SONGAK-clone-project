@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+    <sqlMap namespace="Code">
+            
+
+        <select id="list_d1" parameterClass="array">
+                SELECT 
+                    * 
+                FROM 
+                    code
+                WHERE 
+                    seq = 0
+                ORDER BY 
+                    value asc
+        </select>
+
+
+         <select id="list_d2" parameterClass="array">
+                SELECT 
+                    a.*,
+                    concat(concat(a.code, '-'), a.seq) as code_seq
+                FROM 
+                    code a
+                WHERE 
+                    code = #code# AND
+                    seq != 0
+                ORDER BY 
+                    `order` asc, value asc
+        </select>
+        
+        
+        <select id="select_no" parameterClass="array">
+                SELECT
+                    a.*,
+                    concat(concat(a.code, '-'), a.seq) as code_seq
+                FROM
+                    code a
+                WHERE
+                    no = #no#
+        </select>
+        
+        <select id="select_codeSeq" parameterClass="array">
+                SELECT
+                    a.*,
+                    concat(concat(a.code, '-'), a.seq) as code_seq
+                FROM
+                    code a
+                WHERE
+                    code = #code# AND 
+                    seq = #seq#
+        </select>
+
+        <select id="select_value" parameterClass="array">
+                SELECT
+                    value
+                FROM
+                    code
+                WHERE
+                    code = #code# AND 
+                    seq = #seq#
+        </select>
+
+
+
+        <!-- 추가될 SEQ 번호 -->
+        <select id="last_seq" parameterClass="array">
+                SELECT ifnull(MAX(seq), 0)+1 as seq FROM code WHERE code = #code#
+        </select>
+
+        <!-- 추가될 ORDER -->
+        <select id="last_order" parameterClass="array">
+                SELECT ifnull(MAX(`order`), 0)+1 as `order` FROM code WHERE code = #code#
+        </select>
+
+
+
+        <update id="update" parameterClass="array">
+                UPDATE code SET
+                    mod_dt = now()
+                    <isNotNull property="order">
+                        ,`order` = #order#
+                    </isNotNull>
+                    <isNotEmpty property="value">
+                        ,value = #value#
+                    </isNotEmpty>
+                    <isNotNull property="code1">
+                        ,code1 = #code1#
+                    </isNotNull>
+                    <isNotNull property="code2">
+                        ,code2 = #code2#
+                    </isNotNull>
+                    <isNotNull property="code3">
+                        ,code3 = #code3#
+                    </isNotNull>
+                    <isNotNull property="code4">
+                        ,code4 = #code4#
+                    </isNotNull>
+                    <isNotNull property="code5">
+                        ,code5 = #code5#
+                    </isNotNull>
+                WHERE
+                    <isNotEmpty property="no">
+                        no = #no#
+                    </isNotEmpty>
+                    <isEmpty property="no">
+                        code = #code# AND
+                        seq = #seq#
+                    </isEmpty>
+        </update>
+
+        
+        <insert id="insert_d1" parameterClass="array">
+                INSERT INTO code SET
+                    code = #code#,
+                    seq = 0,
+                    `order` = 0,
+                    value = #value#,
+                    reg_dt = now()
+        </insert>
+        
+        <insert id="insert_d2" parameterClass="array">
+                INSERT INTO code SET
+                    code = #code#,
+                    seq = #seq#,
+                    `order` = #order#,
+                    value = #value#,
+                    code1 = #code1#,
+                    code2 = #code2#,
+                    code3 = #code3#,
+                    code4 = #code4#,
+                    code5 = #code5#,
+                    reg_dt = now()
+        </insert>
+        
+        <!-- D1 코드 삭제시 하위코드까지 다 삭제해버림 -->
+        <delete id="delete_d1" parameterClass="array">
+                DELETE FROM code
+                WHERE
+                    code = #code#
+        </delete>
+    
+        <delete id="delete_d2" parameterClass="array">
+                DELETE FROM code
+                WHERE
+                    no = #no#
+        </delete>
+    
+
+    </sqlMap>

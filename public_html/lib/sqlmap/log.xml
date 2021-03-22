@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+    <sqlMap namespace="Log">
+        
+        
+        <select id="list">
+                SELECT
+                    *
+                FROM
+                    it9_log
+                WHERE
+                    div1 = #div1# 
+                    <isNotEmpty property="div2" prepend="AND">
+                        div2 = #div2#
+                    </isNotEmpty>
+                    <isNotEmpty property="pno" prepend="AND">
+                        pno = #pno#
+                    </isNotEmpty>
+                    $where_query$
+                ORDER BY
+                    log_dt desc
+                <isNotEmpty property="limit">
+                Limit 0, $limit$
+                </isNotEmpty>
+        </select>
+        
+        <insert id="insert">
+                INSERT INTO it9_log SET
+                    div1 = #div1#,
+                    div2 = #div2#,
+                    pno = #pno#,
+                    log = #log#,
+                    log_ip = #log_ip#,
+                    log_dt = now(),
+                    log_id = #log_id#
+        </insert>
+
+
+    </sqlMap>

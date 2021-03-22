@@ -1,0 +1,5 @@
+$(".colorbox_iframe2").colorbox({href:"", iframe:true, width:"1000px", height:"880px", scrolling:true,closeButton:true,overlayClose:true, onClosed:function(){}});
+
+$.colorbox({href:"<?=$inpath?>/pages/management/pop_write_schkey.php?wr_id="+wr_id,iframe:true, width:"492px", height:"352px", transition:"none", scrolling:false,closeButton:true,overlayClose:true, onClosed:function(){ 
+		schkey_change(wr_id);
+}});

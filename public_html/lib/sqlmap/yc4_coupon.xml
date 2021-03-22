@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+    <sqlMap namespace="Yc4Coupon">
+        
+         <select id="get">
+                SELECT
+                    *
+                FROM
+                    yc4_coupon
+                WHERE
+                    cpn_id = #cpn_id#
+         </select>
+         
+         <select id="get_byNo">
+                SELECT
+                    *
+                FROM
+                    yc4_coupon
+                WHERE
+                    cpn_no = #cpn_no#
+         </select>
+         
+         
+        <!-- 쿠폰목록 -->
+        <select id="list" parameterClass="array">
+                SELECT 
+                    <isEqual property="is_count" compareValue="Y">
+                        count(*) as cnt
+                    </isEqual>
+                    <isNotEqual property="is_count" compareValue="Y">
+                        a.*,
+                        m.mb_id,
+                        m.mb_name,
+                        if(date_format(now(), '%Y-%m-%d') &gt;= a.cpn_start AND date_format(now(), '%Y-%m-%d') &lt;= a.cpn_end, 'Y', 'N' ) as useable
+                    </isNotEqual>
+                FROM 
+                    yc4_coupon a,
+                    g4_member m
+                WHERE 
+                    a.mb_id = m.mb_id
+                    <isNotEmpty property="sfl">
+                            AND $sfl$ like '%$stx$%'
+                    </isNotEmpty>
+                    <isNotEmpty property="useable">
+                            AND date_format(now(), '%Y-%m-%d') &gt;= a.cpn_start AND date_format(now(), '%Y-%m-%d') &lt;= a.cpn_end
+                    </isNotEmpty>
+                    $where_query$
+                <isNotEqual property="is_count" compareValue="Y">
+                ORDER BY
+                    $sst$ $sod$ $order_query$
+                Limit
+                    $from_record$, $rows$
+                </isNotEqual>
+        </select>
+        
+        <insert id="insert">
+                INSERT INTO
+                    yc4_coupon
+                SET
+                    cpn_no = #cpn_no#,
+					cpn_name = #cpn_name#, 
+                    mb_id = #mb_id#,
+                    cpn_type = #cpn_type#,
+                    cpn_amt = #cpn_amt#,
+                    cpn_start = #cpn_start#,
+                    cpn_end = #cpn_end#,
+                    reg_date = now()
+        </insert>
+        
+
+        <insert id="insert_all">
+            INSERT INTO
+                yc4_coupon
+            SET
+                cpn_no = #cpn_no#
+                , mb_id = #mb_id#
+                , cpn_name = #cpn_name#
+                , cpn_type = #cpn_type#
+                , cpn_amt = #cpn_amt#
+                , cpn_start = #cpn_start#
+                , cpn_end = #cpn_end# 
+                , reg_date = now()
+        </insert>
+
+        
+        <update id="update">
+                UPDATE
+                    yc4_coupon
+                SET
+                    cpn_no = #cpn_no#,
+                    mb_id  = #mb_id#,
+                    cpn_type = #cpn_type#,
+                    cpn_amt = #cpn_amt#,
+                    cpn_start = #cpn_start#,
+                    cpn_end = #cpn_end#
+                WHERE
+                    cpn_id = #cpn_id#
+        </update>
+        
+        
+        <delete id="delete">
+                DELETE FROM yc4_coupon WHERE cpn_id = #cpn_id#
+        </delete>
+        
+        <delete id="delete_byNo">
+                DELETE FROM yc4_coupon WHERE cpn_no = #cpn_no#
+        </delete>
+        
+        <!-- 사용처리 -->
+        <update id="use_coupon">
+                UPDATE 
+                    yc4_coupon
+                SET
+                    use_date = now()
+                WHERE
+                <isNotEmpty property="cpn_id">
+                    cpn_id = #cpn_id#
+                </isNotEmpty>
+                <isNotEmpty property="cpn_no">
+                    cpn_no = #cpn_no#
+                </isNotEmpty>
+        </update>
+        
+        <!-- 이미 받은 쿠폰인지 조회 -->
+        <select id="check_dup">
+             SELECT 
+                   count(*) cnt
+             FROM
+                    yc4_coupon
+             WHERE
+                    use_date = ''
+                    AND cpn_name = #cpn_name#
+                    AND date_format(now(), '%Y-%m-%d') &gt;= cpn_start AND date_format(now(), '%Y-%m-%d') &lt;= cpn_end
+                    AND mb_id = #mb_id#
+        </select>
+            
+            
+    </sqlMap>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+    <sqlMap namespace="Yc4MultiDelivery">
+        
+        
+         <select id="list">
+                SELECT
+                <isEqual property="is_count" compareValue="Y">
+                    count(*) as cnt
+                </isEqual>
+                <isNotEqual property="is_count" compareValue="Y">
+                    *
+                </isNotEqual>
+                FROM
+                      yc4_order_md
+                WHERE
+                        od_id = #od_id#
+                         <isNotEmpty property="sfl">
+                             <isNotEmpty property="stx"  prepend="AND">
+                                    $sfl$ like '%$stx$%'
+                             </isNotEmpty>
+                          </isNotEmpty>
+                          $where_query$
+                <isNotEqual property="is_count" compareValue="Y">
+                <isNotEmpty property="sst">
+                    ORDER BY
+                        <isEqual property="sod" compareValue="asc">
+                            if($sst$='' OR $sst$ is null, '힣힣힣힣힣힣', $sst$) $sod$ 
+                        </isEqual>  
+                        <isEqual property="sod" compareValue="desc">
+                            $sst$ $sod$ 
+                        </isEqual>  
+                        $order_query$
+                </isNotEmpty>
+                Limit
+                    $from_record$, $rows$
+                </isNotEqual>
+        </select>
+        
+        
+        <select id="get">
+            SELECT
+                *
+            FROM
+                yc4_order_md
+            WHERE
+                no = #no#
+        </select> 
+        
+        
+        <insert id="insert">
+            INSERT INTO
+                yc4_order_md
+            SET
+                od_id = #od_id#
+				, md_name = #md_name#
+				, md_tel = #md_tel#
+				, md_hp = #md_hp#
+				, md_zip1 = #md_zip1#
+				, md_addr1 = #md_addr1#
+				, md_addr2 = #md_addr2#
+				, md_memo = #md_memo#
+				, md_qty = #md_qty#
+				, md_dl_id = #md_dl_id#
+				, md_invoice_time = #md_invoice_time#
+				, md_invoice = #md_invoice#
+                , reg_date = now()
+                , reg_id = #member_id#
+                , reg_ip = #ip#
+        </insert>
+        
+        <update id="dl_update">
+                UPDATE yc4_order_md 
+                SET
+					md_dl_id = #md_dl_id#
+					, md_invoice_time = #md_invoice_time#
+					, md_invoice = #md_invoice#
+                 WHERE
+                    no = #no#
+        </update>
+
+		<update id="receiver_update">
+				UPDATE yc4_order_md
+				SET
+					md_name = #md_name#
+					, md_tel = #md_tel#
+					, md_hp = #md_hp#
+					, md_zip1 = #md_zip1#
+					, md_addr1 = #md_addr1#
+					, md_addr2 = #md_addr2#
+				WHERE
+					no = #no#
+		</update>
+        
+        <update id="update_field">
+                UPDATE yc4_order_md
+                SET
+                    $field$ = #value#
+                WHERE
+                    no = #no#
+        </update>
+        
+        <delete id="delete">
+                DELETE FROM yc4_order_md WHERE no = #no#
+        </delete>
+        
+                  
+		<select id="is_all_invoice">
+			SELECT
+				count(*) cnt
+			FROM
+				yc4_order_md
+			WHERE
+				od_id = #od_id#
+				AND
+					md_invoice = ''
+		</select>
+
+    </sqlMap>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+    <sqlMap namespace="BoardComment">
+            
+        <!-- 댓글리스트 -->
+        <select id="list" parameterClass="array">
+            SELECT
+                *
+            FROM
+                g4_write_$board$
+            WHERE
+                wr_is_comment = 1 AND
+                wr_parent = #wr_id#
+            ORDER BY
+                wr_datetime asc
+        </select>
+
+        <select id="select" parameterClass="array">
+            SELECT
+                *
+            FROM
+                g4_write_$board$
+            WHERE
+                wr_is_comment = 1 AND
+                wr_id = #wr_id#
+        </select>
+        
+        <!-- 댓글 수정 -->
+        <update id="update">
+            UPDATE g4_write_$board$ SET
+                wr_content = #wr_content#
+            WHERE
+                wr_id = #wr_id#
+        </update>
+
+        <!-- 댓글 개수 수정 -->
+        <update id="update_cnt">
+            UPDATE g4_write_$board$ SET
+                wr_comment = #cnt#
+            WHERE
+                wr_id = #wr_id#
+        </update>
+        
+        <!-- 댓글 개수 -->
+        <select id="get_cnt">
+            SELECT COUNT(*) as cnt FROM g4_write_$board$ WHERE wr_parent = #wr_id# AND wr_is_comment = 1    
+        </select>
+
+        <!-- 댓글 추가 -->
+        <insert id="insert">
+            INSERT INTO g4_write_$board$ SET
+                wr_num = #wr_num#,
+                wr_parent = #wr_parent#,
+                wr_is_comment = 1,
+                wr_comment = #wr_comment#,
+                ca_name = #ca_name#,
+                wr_content = #wr_content#,
+                mb_id = #mb_id#,
+                wr_password = #wr_password#,
+                wr_name = #wr_name#,
+                wr_email = #wr_email#,
+                wr_datetime = now(),
+                wr_ip = #wr_ip#
+        </insert>
+        
+        <!-- 댓글 삭제 -->
+        <delete id="delete">
+            DELETE FROM g4_write_$board$ WHERE wr_id = #wr_id#
+        </delete>
+        
+        
+    </sqlMap>

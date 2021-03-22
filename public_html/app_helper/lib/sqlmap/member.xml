@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+    <sqlMap namespace="Member">
+            
+        <select id="select" parameterClass="array">
+                SELECT * FROM g4_member WHERE mb_id=#mb_id#
+        </select>
+        
+        <!-- 아이디중복검사 -->
+        <select id="id_dup_chk" parameterClass="array">
+                SELECT 
+                    count(mb_id) cnt
+                FROM
+                    g4_member
+                WHERE
+                    mb_id = #mb_id#
+        </select>
+        
+        <!-- 회원목록 -->
+        <select id="list" parameterClass="array">
+                SELECT 
+                    <isEqual property="is_count" compareValue="Y">
+                        count(*) as cnt
+                    </isEqual>
+                    <isNotEqual property="is_count" compareValue="Y">
+                        a.*
+                    </isNotEqual>
+                FROM 
+                    g4_member a
+                WHERE 
+                    1 = 1
+                    <isNotEmpty property="sfl">
+                        <isEqual property="sfl" compareValue="mb_point" prepend="AND">
+                            $sfl$ > #stx#
+                        </isEqual>
+                        <isEqual property="sfl" compareValue="mb_level" prepend="AND">
+                            $sfl$ = #stx#
+                        </isEqual>
+                        <isNotEqual property="sfl" compareValue="mb_level">
+                            <isNotEqual property="sfl" compareValue="mb_point" prepend="AND">
+                                $sfl$ like '%$stx$%'
+                            </isNotEqual>
+                        </isNotEqual>
+                    </isNotEmpty>
+                    $where_query$
+                <isNotEqual property="is_count" compareValue="Y">
+                ORDER BY
+                    $sst$ $sod$ $order_query$
+                Limit
+                    $from_record$, $rows$
+                </isNotEqual>
+        </select>
+        
+        
+        <!-- 나를 추천한놈 -->
+       <select id="get_list_recomm">
+            SELECT
+               *
+            FROM
+               g4_member
+            WHERE
+               mb_recom_id = #mb_id#
+       </select>
+            
+        
+        <select id="select_leave">
+            SELECT
+                *
+            FROM
+                g4_member
+            WHERE
+                mb_id = #mb_id# AND
+                mb_leave_date != ''
+        </select>
+        
+        <select id="select_field">
+            SELECT * FROM g4_member WHERE $field$ = #search# 
+        </select>
+        
+        
+        
+        <update id="update">
+            UPDATE g4_member SET
+                mod_date = now()
+                <isNotEmpty property="mb_password">
+                    , mb_password = #mb_password#
+                </isNotEmpty>
+                <isNotEmpty property="mb_name">
+                    , mb_name = #mb_name#
+                </isNotEmpty>
+                <isNotEmpty property="mb_nick">
+                    , mb_nick = #mb_nick#
+                </isNotEmpty>
+                <isNotEmpty property="mb_nick_date">
+                    , mb_nick_date = #mb_nick_date#
+                </isNotEmpty>
+                <isNotEmpty property="mb_email">
+                    , mb_email = #mb_email#
+                </isNotEmpty>
+                <isNotEmpty property="mb_homepage">
+                    , mb_homepage = #mb_homepage#
+                </isNotEmpty>
+                <isNotEmpty property="mb_password_q">
+                    , mb_password_q = #mb_password_q#
+                </isNotEmpty>
+                <isNotEmpty property="mb_password_a">
+                    , mb_password_a = #mb_password_a#
+                </isNotEmpty>
+                <isNotEmpty property="mb_level">
+                    , mb_level = #mb_level#
+                </isNotEmpty>
+                <isNotEmpty property="mb_jumin">
+                    , mb_jumin = #mb_jumin#
+                </isNotEmpty>
+                <isNotEmpty property="mb_sex">
+                    , mb_sex = #mb_sex#
+                </isNotEmpty>
+                <isNotEmpty property="mb_birth">
+                    , mb_birth = #mb_birth#
+                </isNotEmpty>
+                <isNotEmpty property="mb_tel">
+                    , mb_tel = #mb_tel#
+                </isNotEmpty>
+                <isNotEmpty property="mb_hp">
+                    , mb_hp = #mb_hp#
+                </isNotEmpty>
+                <isNotEmpty property="mb_zip1">
+                    , mb_zip1 = #mb_zip1#
+                </isNotEmpty>
+                <isNotEmpty property="mb_zip2">
+                    , mb_zip2 = #mb_zip2#
+                </isNotEmpty>
+                <isNotEmpty property="mb_addr1">
+                    , mb_addr1 = #mb_addr1#
+                </isNotEmpty>
+                <isNotEmpty property="mb_addr2">
+                    , mb_addr2 = #mb_addr2#
+                </isNotEmpty>
+                <isNotEmpty property="mb_signature">
+                    , mb_signature = #mb_signature#
+                </isNotEmpty>
+                <isNotEmpty property="mb_recommend">
+                    , mb_recommend = #mb_recommend#
+                </isNotEmpty>
+                <isNotEmpty property="mb_point">
+                    , mb_point = #mb_point#
+                </isNotEmpty>
+                <isNotEmpty property="mb_today_login">
+                    , mb_today_login = #mb_today_login#
+                </isNotEmpty>
+                <isNotEmpty property="mb_login_ip">
+                    , mb_login_ip = #mb_login_ip#
+                </isNotEmpty>
+                <isNotEmpty property="mb_datetime">
+                    , mb_datetime = #mb_datetime#
+                </isNotEmpty>
+                <isNotEmpty property="mb_ip">
+                    , mb_ip = #mb_ip#
+                </isNotEmpty>
+                <isNotEmpty property="mb_level_date">
+                    , mb_level_date = #mb_level_date#
+                </isNotEmpty>
+                <isNotEmpty property="mb_intercept_date">
+                    , mb_intercept_date = #mb_intercept_date#
+                </isNotEmpty>
+                <isNotEmpty property="mb_email_certify">
+                    , mb_email_certify = #mb_email_certify#
+                </isNotEmpty>
+                <isNotEmpty property="mb_memo">
+                    , mb_memo = #mb_memo#
+                </isNotEmpty>
+                <isNotEmpty property="mb_lost_certify">
+                    , mb_lost_certify = #mb_lost_certify#
+                </isNotEmpty>
+                <isNotEmpty property="mb_mailling">
+                    , mb_mailling = #mb_mailling#
+                </isNotEmpty>
+                <isNotEmpty property="mb_sms">
+                    , mb_sms = #mb_sms#
+                </isNotEmpty>
+                <isNotEmpty property="mb_open">
+                    , mb_open = #mb_open#
+                </isNotEmpty>
+                <isNotEmpty property="mb_open_date">
+                    , mb_open_date = #mb_open_date#
+                </isNotEmpty>
+                <isNotEmpty property="mb_profile">
+                    , mb_profile = #mb_profile#
+                </isNotEmpty>
+                <isNotEmpty property="mb_memo_call">
+                    , mb_memo_call = #mb_memo_call#
+                </isNotEmpty>
+                <isNotEmpty property="mb_1">
+                    , mb_1 = #mb_1#
+                </isNotEmpty>
+                <isNotEmpty property="mb_2">
+                    , mb_2 = #mb_2#
+                </isNotEmpty>
+                <isNotEmpty property="mb_3">
+                    , mb_3 = #mb_3#
+                </isNotEmpty>
+                <isNotEmpty property="mb_4">
+                    , mb_4 = #mb_4#
+                </isNotEmpty>
+                <isNotEmpty property="mb_5">
+                    , mb_5 = #mb_5#
+                </isNotEmpty>
+                <isNotEmpty property="mb_6">
+                    , mb_6 = #mb_6#
+                </isNotEmpty>
+                <isNotEmpty property="mb_7">
+                    , mb_7 = #mb_7#
+                </isNotEmpty>
+                <isNotEmpty property="mb_8">
+                    , mb_8 = #mb_8#
+                </isNotEmpty>
+                <isNotEmpty property="mb_9">
+                    , mb_9 = #mb_9#
+                </isNotEmpty>
+                <isNotEmpty property="mb_10">
+                    , mb_10 = #mb_10#
+                </isNotEmpty>
+                <isNotEmpty property="mb_jpush_rid">
+                    , mb_jpush_rid = #mb_jpush_rid#
+                </isNotEmpty>
+                <isNotEmpty property="mb_type">
+                    , mb_type = #mb_type#
+                </isNotEmpty>
+                <isNotEmpty property="mb_dept">
+                    , mb_dept = #mb_dept#
+                </isNotEmpty>
+                <isNotEmpty property="mb_pos">
+                    , mb_pos = #mb_pos#
+                </isNotEmpty>
+            WHERE
+                mb_id = #mb_id#
+        </update>
+
+        <update id="update_field">
+            <isNotEmpty property='field'>
+                UPDATE g4_member SET
+                    $field$ = #value#,
+                    mod_date = now()
+                WHERE
+                    mb_id=#mb_id#
+            </isNotEmpty>
+        </update>
+        
+        
+
+
+        <insert id="insert">
+                INSERT INTO g4_member SET
+                    mb_id = #mb_id#,
+                    mb_password = password(#mb_password#),
+                    mb_name = #mb_name#,
+                    mb_nick = #mb_name#,
+                    mb_level = 2,
+                    mb_type = #mb_type#,
+                    mb_datetime = now()
+        </insert>
+        
+        
+        
+
+       
+
+    </sqlMap>
